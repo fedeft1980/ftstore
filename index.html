@@ -4,123 +4,261 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Catálogo de Servicios Premium – ftsore</title>
-  <style>
-    :root {
-      --clr-bg: #0f1116;
-      --clr-elev: #141823;
-      --clr-elev-2: #1a2030;
-      --clr-border: #242a3a;
-      --clr-primary: #e05252;
-      --clr-accent: #8bb8ff;
-      --clr-text: #e7e9ee;
-      --clr-text-light: #aab1c5;
+ <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-      --radius: 16px;
-      --shadow: 0 6px 20px rgba(0,0,0,.25);
-      --shadow-hover: 0 10px 28px rgba(0,0,0,.32);
+:root {
+  --clr-bg: #0f1116;
+  --clr-elev: #141823;
+  --clr-elev-2: #1a2030;
+  --clr-border: #242a3a;
+  --clr-primary: #e05252;
+  --clr-accent: #8bb8ff;
+  --clr-text: #e7e9ee;
+  --clr-text-light: #aab1c5;
 
-      --space-xs: 4px;
-      --space-s: 8px;
-      --space-m: 16px;
-      --space-l: 24px;
-      --space-xl: 32px;
+  --radius: 16px;
+  --shadow: 0 6px 20px rgba(0,0,0,.25);
+  --shadow-hover: 0 14px 34px rgba(0,0,0,.45);
 
-      --fs-h1: clamp(1.6rem, 3vw, 2.25rem);
-      --fs-h2: clamp(1.1rem, 2.3vw, 1.4rem);
-      --fs-body: 1rem;
-      --fs-small: .9rem;
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-m: 16px;
+  --space-l: 24px;
+  --space-xl: 32px;
 
-      --marca-size: clamp(560px, 64vw, 1200px);
-      --marca-opacity: 0.035;
-      --marca-blur: 2px;
-      --marca-shift-x: 1.4vw;
-      --marca-shift-y: 0.8vh;
-      --marca-scale: 1.015;
-      --marca-dur: 36s;
-    }
+  --fs-h1: clamp(1.7rem, 3vw, 2.4rem);
+  --fs-h2: clamp(1.15rem, 2.3vw, 1.45rem);
+  --fs-body: 1rem;
+  --fs-small: .9rem;
 
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, sans-serif;
-      background: radial-gradient(1200px 700px at 70% -10%, #121624 0%, #0f1116 55%, #0f1116 100%);
-      color: var(--clr-text);
-    }
+  --marca-size: clamp(560px, 64vw, 1200px);
+  --marca-opacity: 0.035;
+  --marca-blur: 2px;
+}
 
-    header {
-      background: linear-gradient(180deg, rgba(20,24,35,.75), rgba(20,24,35,.35));
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      padding: 18px 22px;
-      border-bottom: 1px solid var(--clr-border);
-    }
+* { box-sizing: border-box; }
 
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 16px;
-      flex-wrap: nowrap;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: radial-gradient(1200px 700px at 70% -10%, #121624 0%, #0f1116 55%, #0f1116 100%);
+  color: var(--clr-text);
+}
 
-    .logo {
-      height: 90px;
-      width: auto;
-      border-radius: 12px;
-      flex: 0 0 auto;
-      box-shadow: 0 4px 18px rgba(0,0,0,.35);
-    }
+/* HEADER PREMIUM */
+header {
+  background:
+    radial-gradient(800px 400px at 20% 0%, rgba(224,82,82,.18), transparent 60%),
+    linear-gradient(180deg, rgba(20,24,35,.85), rgba(20,24,35,.45));
+  backdrop-filter: blur(6px);
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--clr-border);
+}
 
-    .header-content h1 {
-      font-size: var(--fs-h1);
-      margin: 0;
-      color: var(--clr-text);
-      letter-spacing: .2px;
-      line-height: 1.1;
-    }
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
-    .header-badges { display:flex; flex-wrap:wrap; gap:10px; margin:10px auto 0; max-width:1100px; }
-    .header-badges .badge{ background: rgba(26,32,48,.6); color:var(--clr-text); padding:6px 12px; border:1px solid var(--clr-border); border-radius:999px; font-size:var(--fs-small); }
+.logo {
+  height: 90px;
+  border-radius: 14px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.45);
+}
 
-    main { max-width: 900px; margin: 0 auto; padding: var(--space-l) var(--space-m) var(--space-xl); }
-    section { margin-bottom: var(--space-xl); }
-    section h2 { margin: 0 0 6px; font-size: var(--fs-h2); color: var(--clr-accent); font-weight:600; }
-    .subtext{ margin:0 0 var(--space-m); font-size:var(--fs-small); color:var(--clr-text-light); }
+.header-content h1 {
+  font-size: var(--fs-h1);
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.1;
+  background: linear-gradient(180deg, #ffffff, #cfd6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    .card-list { display:grid; gap:var(--space-m); }
-    .card{ background:var(--clr-elev); border:1px solid var(--clr-border); border-radius:var(--radius); padding:var(--space-m); box-shadow:var(--shadow); display:flex; align-items:center; gap:var(--space-m); transition: transform .12s ease, box-shadow .12s ease; }
-    .card:hover{ transform: translateY(-2px); box-shadow:var(--shadow-hover); background:var(--clr-elev-2); border-color:#2a3350; }
+.header-badges {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  max-width:1100px;
+  margin:12px auto 0;
+}
 
-    .card label{ display:flex; align-items:center; gap:var(--space-m); width:100%; cursor:pointer; }
-    .card input[type="checkbox"]{ appearance:none; width:20px; height:20px; border-radius:6px; border:1px solid var(--clr-border); background:#0f131e; position:relative; }
-    .card input[type="checkbox"]:checked{ background: linear-gradient(180deg, #ff7c7c, #e05252); border-color:#e05252; }
-    .card .name{ font-weight:700; }
-    .card .price{ margin-left:auto; font-weight:800; color:var(--clr-primary); }
+.header-badges .badge {
+  background: rgba(26,32,48,.6);
+  border:1px solid var(--clr-border);
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:var(--fs-small);
+}
 
-    .grouped-options{ margin-top:var(--space-s); padding-left:calc(var(--space-m) + 28px); display:none; gap:var(--space-xs); }
-    .grouped-options label{ display:flex; align-items:center; gap:var(--space-s); cursor:pointer; color:var(--clr-text); }
-    .grouped-options input[type="checkbox"]{ width:16px; height:16px; border-radius:5px; }
-    .grouped-options .price{ margin-left:auto; color:var(--clr-primary); font-weight:700; }
+/* MAIN */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-l) var(--space-m) var(--space-xl);
+}
 
-    .cta-wrapper{ position: sticky; bottom: 0; left: 0; right: 0; padding: var(--space-m); background: linear-gradient(180deg, rgba(15,17,22,0), rgba(15,17,22,.9) 35%, rgba(15,17,22,1) 100%); display:grid; place-items:center; border-top:1px solid var(--clr-border); }
-    .cta-wrapper button{ width:100%; max-width:900px; padding:var(--space-m) var(--space-l); font-size:1.05rem; font-weight:800; border:none; border-radius:999px; color:#111; background: linear-gradient(180deg, #ffd0d0, #f7b2b2); cursor:pointer; box-shadow: 0 10px 25px rgba(224,82,82,.2); }
+section { margin-bottom: var(--space-xl); }
 
-    footer{ margin-top:var(--space-xl); text-align:center; font-size:var(--fs-small); color:var(--clr-text-light); padding-bottom:calc(var(--space-xl) + 64px); }
-    footer a{ color:var(--clr-accent); text-decoration:none; font-weight:700; }
+section h2 {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--clr-accent);
+}
 
-    body::before{ content:""; position:fixed; inset:0; background-image:url('logo.jpeg'); background-repeat:no-repeat; background-position:right 8% center; background-size:var(--marca-size); opacity:var(--marca-opacity); filter: blur(var(--marca-blur)); pointer-events:none; z-index:0; transform: translate3d(0,0,0) scale(1); }
+.subtext {
+  color: var(--clr-text-light);
+  font-size: var(--fs-small);
+}
 
-    @media (max-width:600px){ .header-content{ flex-wrap:wrap; gap:10px; } .logo{ height:70px; } body::before{ background-position:center 18%; background-size:68vw; opacity:0.02; filter:blur(3px); } }
+/* CARDS PREMIUM */
+.card-list { display:grid; gap:var(--space-m); }
 
-    /* ServiFast skin (opcional, preservado) */
-    :root{ /* overrides preserved intentionally */ }
+.card {
+  background: linear-gradient(180deg, #141823, #111420);
+  border:1px solid var(--clr-border);
+  border-radius:var(--radius);
+  padding:var(--space-m);
+  display:flex;
+  align-items:center;
+  gap:var(--space-m);
+  box-shadow:var(--shadow);
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
 
-    /* accesibilidad: foco visible */
-    input[type="checkbox"]:focus-visible{ outline: 3px solid rgba(139,184,255,.18); outline-offset:2px; }
-  </style>
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  background: linear-gradient(180deg, #1a2030, #141823);
+}
+
+.card label {
+  display:flex;
+  align-items:center;
+  gap:var(--space-m);
+  width:100%;
+  cursor:pointer;
+}
+
+.card .name {
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.card .price {
+  margin-left:auto;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--clr-primary);
+}
+
+/* CHECKBOX ELEGANTE */
+.card input[type="checkbox"] {
+  appearance:none;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  border:1px solid var(--clr-border);
+  background:#0f131e;
+  position:relative;
+}
+
+.card input[type="checkbox"]:checked {
+  background: linear-gradient(180deg, #ff7c7c, #e05252);
+  border-color:#e05252;
+}
+
+.card input[type="checkbox"]:checked::after {
+  content:"✓";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:#111;
+  font-size:13px;
+  font-weight:900;
+}
+
+/* SUB OPCIONES */
+.grouped-options {
+  margin-top:8px;
+  padding-left:44px;
+  display:none;
+  gap:6px;
+}
+
+.grouped-options label {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.grouped-options .price {
+  margin-left:auto;
+  font-weight:700;
+  color:var(--clr-primary);
+}
+
+/* CTA */
+.cta-wrapper {
+  position: sticky;
+  bottom: 0;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(15,17,22,0), rgba(15,17,22,.9) 35%, rgba(15,17,22,1));
+  border-top:1px solid var(--clr-border);
+}
+
+.cta-wrapper button {
+  width:100%;
+  max-width:900px;
+  padding:18px 28px;
+  font-size:1.05rem;
+  font-weight:800;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  border:none;
+  border-radius:999px;
+  background: linear-gradient(180deg, #ffd0d0, #f7b2b2);
+  cursor:pointer;
+  box-shadow: 0 14px 34px rgba(224,82,82,.35);
+}
+
+.cta-wrapper button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 44px rgba(224,82,82,.45);
+}
+
+/* MARCA DE FONDO */
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('logo.jpeg') no-repeat right 8% center;
+  background-size:var(--marca-size);
+  opacity:var(--marca-opacity);
+  filter: blur(var(--marca-blur));
+  pointer-events:none;
+  z-index:0;
+}
+
+/* MOBILE */
+@media (max-width:600px){
+  .logo { height:70px; }
+  body::before {
+    background-position:center 18%;
+    background-size:68vw;
+    opacity:.02;
+    filter:blur(3px);
+  }
+}
+</style>
+
 </head>
 <body>
  <header>
@@ -176,12 +314,12 @@
       <p class="subtext">Precio por pantalla.</p>
       <div class="card-list">
         <div class="card"><label><input type="checkbox" data-name="Netflix Original 1 Disp." data-price="6000" /><span class="name">🎬 Netflix Original 1 Disp.</span><span class="price">$6000</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Netflix Standard Cuenta completa" data-price="10000" /><span class="name">🎬 Netflix Standard Cuenta completa</span><span class="price">$10000</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Netflix Premium Cuenta completa" data-price="15500" /><span class="name">🎬 Netflix Premium Cuenta completa</span><span class="price">$15500</span></label></div>
+        <div class="card"><label><input type="checkbox" data-name="Netflix Standard Cuenta completa" data-price="SIN STOCK" /><span class="name">🎬 Netflix Standard Cuenta completa</span><span class="price">SIN STOCK</span></label></div>
+        <div class="card"><label><input type="checkbox" data-name="Netflix Premium Cuenta completa" data-price="18900" /><span class="name">🎬 Netflix Premium Cuenta completa</span><span class="price">$18500</span></label></div>
         <div class="card"><label><input type="checkbox" data-name="Disney+ Premium 1 Disp." data-price="4900" /><span class="name">🏰 Disney+ Premium 1 Disp.</span><span class="price">$4900</span></label></div>
         <div class="card"><label><input type="checkbox" data-name="Disney+ Cuenta Completa" data-price="12800" /><span class="name">🏰 Disney+ Cuenta Completa</span><span class="price">$12800</span></label></div>
         <div class="card"><label><input type="checkbox" data-name="Amazon Prime Video 1 Disp." data-price="2900" /><span class="name">📦 Amazon Prime Video 1 Disp.</span><span class="price">$2900</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Amazon Prime Video Cuenta Completa" data-price="4800" /><span class="name">📦 Amazon Prime Video Cuenta Completa</span><span class="price">$48800</span></label></div>
+        <div class="card"><label><input type="checkbox" data-name="Amazon Prime Video Cuenta Completa" data-price="4800" /><span class="name">📦 Amazon Prime Video Cuenta Completa</span><span class="price">$4800</span></label></div>
         <div class="card"><label><input type="checkbox" data-name="Apple TV+ 1 Disp." data-price="3800" /><span class="name">🌐 Apple TV+ 1 Disp.</span><span class="price">$3800</span></label></div>
         <div class="card"><label><input type="checkbox" data-name="Apple TV+ Cuenta Completa" data-price="7500" /><span class="name">🌐 Apple TV+ Cuenta Completa</span><span class="price">$7500</span></label></div>
         <div class="card"><label><input type="checkbox" data-name="Max (HBO) 1 Disp" data-price="2900" /><span class="name">🔮 Max (HBO) 1 Disp</span><span class="price">$2900</span></label></div>
@@ -262,7 +400,7 @@
         <div class="card"><label><input type="checkbox" data-name="Paquetes TV Online Smart TV" data-price="CONSULTAR" /><span class="name">Paquetes TV Online Para Smart TV</span><span class="price">Consultar</span></label></div>
         <div class="card"><label><input type="checkbox" data-name="Paquetes TV Online Roku" data-price="CONSULTAR" /><span class="name">Paquetes TV Online para Roku</span><span class="price">Consultar</span></label></div>
         <div class="card"><label><input type="checkbox" data-name="Flow Full 1 dispositivo" data-price="6000" /><span class="name">Flow Full 1 dispositivo</span><span class="price">$6000</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Flow Full Cuenta completa" data-price="10500" /><span class="name">Flow Full Cuenta COMPLETA</span><span class="price">$10500</span></label></div>
+        <div class="card"><label><input type="checkbox" data-name="Flow Full Cuenta completa" data-price="11000" /><span class="name">Flow Full Cuenta COMPLETA</span><span class="price">$11000</span></label></div>
       </div>
     </section>
 
@@ -289,6 +427,18 @@
       ¿Necesitás algo especial? <a href="#" id="linkWsFooter">Escribime</a>.
     </footer>
   </main>
+  <div id="resumenPedido" style="max-width:900px;margin:0 auto 12px;padding:16px;border-radius:16px;border:1px solid #242a3a;background:#141823;display:none;">
+  <div style="font-weight:700;margin-bottom:8px;">🧾 Resumen del pedido</div>
+  <div id="listaResumen" style="font-size:.95rem;color:#aab1c5;"></div>
+  <div style="display:flex;justify-content:space-between;margin-top:12px;font-weight:800;">
+    <span>Total estimado</span>
+    <span id="totalPedido" style="color:#e05252;">$0</span>
+  </div>
+  <div id="msgCombo" style="margin-top:6px;font-size:.85rem;color:#8bb8ff;display:none;">
+    🔥 Tenés combo activo con descuento
+  </div>
+</div>
+
 
   <div class="cta-wrapper">
     <button id="btnEnviar" aria-label="Enviar pedido por WhatsApp">✅ ACTIVAR AHORA POR WHATSAPP</button>
@@ -308,31 +458,43 @@
     });
 
     function armarMensaje() {
-      const checks = document.querySelectorAll('input[type="checkbox"]:checked');
-      if (!checks.length) {
-        return "Hola! Quiero info sobre tus servicios.";
-      }
-      const items = [];
-      checks.forEach(ch => {
-        const nombre = ch.getAttribute('data-name') || ch.nextElementSibling?.textContent?.trim() || 'Servicio';
-        const price = (ch.getAttribute('data-price') || '').toString().trim();
-        if(price && price.toUpperCase() !== 'CONSULTAR'){
-          items.push(`${nombre} - $${price}`);
-        } else {
-          items.push(`${nombre} - Consultar`);
-        }
-      });
-      const cuerpo = items.join('\n');
-      return `Hola! Quiero pedir/consultar:\n${cuerpo}\n---\nHola vengo desde tu página web!!!.`;
-    }
+  const checks = document.querySelectorAll('input[type="checkbox"]:checked');
 
-    function enviarWhatsApp() {
-      const msg = encodeURIComponent(armarMensaje());
-      // número en formato internacional (sin espacios ni signos): ajustar si necesitás otro
-      const telefono = '5492657219227';
-      const url = `https://wa.me/${telefono}?text=${msg}`;
-      window.open(url, '_blank');
+  if (!checks.length) {
+    return "Hola! Quiero info sobre tus servicios.";
+  }
+
+  let total = 0;
+  let items = [];
+
+  checks.forEach(ch => {
+    const nombre = ch.getAttribute('data-name');
+    const precio = parseInt(ch.getAttribute('data-price'));
+
+    if (!isNaN(precio)) {
+      total += precio;
+      items.push(`• ${nombre} – $${precio}`);
+    } else {
+      items.push(`• ${nombre} – Consultar`);
     }
+  });
+
+  let msg =
+`Hola! Quiero activar los siguientes servicios 👇
+
+${items.join('\n')}
+
+💰 Total estimado: $${total}
+`;
+
+  if (checks.length >= 2) {
+    msg += `\n🔥 Consulto precio combo por varios servicios\n`;
+  }
+
+  msg += `\nVengo desde tu página web. Quedo atento 👍`;
+
+  return msg;
+}
 
     document.getElementById('btnEnviar').addEventListener('click', enviarWhatsApp);
     document.getElementById('linkWsFooter').addEventListener('click', function(e){ e.preventDefault(); enviarWhatsApp(); });
@@ -351,6 +513,50 @@
         parent.dispatchEvent(new Event('change'));
       });
     });
+function actualizarResumen() {
+  const checks = document.querySelectorAll('input[type="checkbox"]:checked');
+  const lista = document.getElementById('listaResumen');
+  const totalEl = document.getElementById('totalPedido');
+  const box = document.getElementById('resumenPedido');
+  const comboMsg = document.getElementById('msgCombo');
+
+  let total = 0;
+  let items = [];
+
+  checks.forEach(ch => {
+    const nombre = ch.getAttribute('data-name');
+    const precio = parseInt(ch.getAttribute('data-price'));
+    if (!isNaN(precio)) {
+      total += precio;
+      items.push(`• ${nombre} – $${precio}`);
+    } else {
+      items.push(`• ${nombre} – Consultar`);
+    }
+  });
+
+  if (items.length === 0) {
+    box.style.display = 'none';
+    return;
+  }
+
+  box.style.display = 'block';
+  lista.innerHTML = items.join('<br>');
+  totalEl.textContent = `$${total}`;
+
+  // combo simple: 2 o más servicios
+  comboMsg.style.display = checks.length >= 2 ? 'block' : 'none';
+}
+
+document.querySelectorAll('input[type="checkbox"]').forEach(ch => {
+  ch.addEventListener('change', actualizarResumen);
+});
+function enviarWhatsApp() {
+  const texto = armarMensaje();
+  const numero = "5492657219227"; // EJEMPLO: Argentina +54 9 + número
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+  window.open(url, "_blank");
+}
+
 
   </script>
 </body>
