@@ -256,6 +256,40 @@ body::before {
     opacity:.02;
     filter:blur(3px);
   }
+}.card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 15px;
+}
+
+.card-content input {
+  margin-right: 10px;
+}
+
+.card-content .info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-content .name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.card-content .description {
+  font-size: 13px;
+  color: #aaa;
+  line-height: 1.3;
+}
+
+.card-content .price {
+  font-weight: bold;
+  color: #ff4d4d;
+  white-space: nowrap;
 }
 </style>
 
@@ -392,11 +426,25 @@ body::before {
 
     <!-- TV Online -->
     <section id="tvonline">
-      <h2>📡 Servicios de TV Online</h2>
+      <h2>📡 Servicios de TV Online Android</h2>
       <p class="subtext">Consultá disponibilidad y precios.</p>
       <div class="card-list">
-        <div class="card"><label><input type="checkbox" data-name="Paquetes TV Online" data-price="CONSULTAR" /><span class="name">Paquetes TV Online</span><span class="price">Consultar</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Paquetes TV Online Android" data-price="CONSULTAR" /><span class="name">Paquetes TV Online Para Android</span><span class="price">Consultar</span></label></div>
+        
+        <div class="card">
+  <label class="card-content">
+    <input type="checkbox" data-name="Paquetes TV Online" data-price="CONSULTAR" />
+
+    <div class="info">
+      <span class="name">Paquetes TV Online Android TV</span>
+
+      <span class="description">
+        Pack Fútbol Argentina · TV en vivo · Canales premium · Películas y Series de todas las pa+lataformas On Demand "Hasta 3 dispositivos"
+      </span>
+    </div>
+
+    <span class="price">Consultar</span>
+  </label>
+</div>
         <div class="card"><label><input type="checkbox" data-name="Paquetes TV Online Smart TV" data-price="CONSULTAR" /><span class="name">Paquetes TV Online Para Smart TV</span><span class="price">Consultar</span></label></div>
         <div class="card"><label><input type="checkbox" data-name="Paquetes TV Online Roku" data-price="CONSULTAR" /><span class="name">Paquetes TV Online para Roku</span><span class="price">Consultar</span></label></div>
         <div class="card"><label><input type="checkbox" data-name="Flow Full 1 dispositivo" data-price="6000" /><span class="name">Flow Full 1 dispositivo</span><span class="price">$6000</span></label></div>
