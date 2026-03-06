@@ -1,611 +1,1099 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Catálogo de Servicios Premium – ftsore</title>
- <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Catálogo de Servicios Premium – ftsore</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-:root {
-  --clr-bg: #0f1116;
-  --clr-elev: #141823;
-  --clr-elev-2: #1a2030;
-  --clr-border: #242a3a;
-  --clr-primary: #e05252;
-  --clr-accent: #8bb8ff;
-  --clr-text: #e7e9ee;
-  --clr-text-light: #aab1c5;
+        :root {
+            --clr-bg: #09090b;
+            --clr-card: rgba(24, 24, 27, 0.6);
+            --clr-card-hover: rgba(39, 39, 42, 0.8);
+            --clr-border: rgba(255, 255, 255, 0.08);
+            --clr-border-hover: rgba(255, 255, 255, 0.15);
+            --clr-primary: #f43f5e;
+            /* Rose 500 */
+            --clr-primary-glow: rgba(244, 63, 94, 0.4);
+            --clr-accent: #3b82f6;
+            /* Blue 500 */
+            --clr-text: #f8fafc;
+            --clr-text-light: #94a3b8;
 
-  --radius: 16px;
-  --shadow: 0 6px 20px rgba(0,0,0,.25);
-  --shadow-hover: 0 14px 34px rgba(0,0,0,.45);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-  --space-xs: 4px;
-  --space-s: 8px;
-  --space-m: 16px;
-  --space-l: 24px;
-  --space-xl: 32px;
+        * {
+            box-sizing: border-box;
+        }
 
-  --fs-h1: clamp(1.7rem, 3vw, 2.4rem);
-  --fs-h2: clamp(1.15rem, 2.3vw, 1.45rem);
-  --fs-body: 1rem;
-  --fs-small: .9rem;
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background-color: var(--clr-bg);
+            color: var(--clr-text);
+            overflow-x: hidden;
+        }
 
-  --marca-size: clamp(560px, 64vw, 1200px);
-  --marca-opacity: 0.035;
-  --marca-blur: 2px;
-}
+        body::before {
+            content: "";
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(244, 63, 94, 0.06) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
 
-* { box-sizing: border-box; }
+        body::after {
+            content: "";
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: radial-gradient(1200px 700px at 70% -10%, #121624 0%, #0f1116 55%, #0f1116 100%);
-  color: var(--clr-text);
-}
+        /* MARCA DE FONDO */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url('logo.jpeg') no-repeat right 8% center;
+            background-size: clamp(560px, 64vw, 1200px);
+            opacity: 0.035;
+            filter: blur(2px);
+            pointer-events: none;
+            z-index: -2;
+        }
 
-/* HEADER PREMIUM */
-header {
-  background:
-    radial-gradient(800px 400px at 20% 0%, rgba(224,82,82,.18), transparent 60%),
-    linear-gradient(180deg, rgba(20,24,35,.85), rgba(20,24,35,.45));
-  backdrop-filter: blur(6px);
-  padding: 20px 22px;
-  border-bottom: 1px solid var(--clr-border);
-}
+        /* HEADER PREMIUM */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(9, 9, 11, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--clr-border);
+            padding: 24px 20px;
+        }
 
-.header-content {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-.logo {
-  height: 90px;
-  border-radius: 14px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.45);
-}
+        .logo {
+            height: 85px;
+            border-radius: 18px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--clr-border);
+        }
 
-.header-content h1 {
-  font-size: var(--fs-h1);
-  font-weight: 800;
-  margin: 0;
-  line-height: 1.1;
-  background: linear-gradient(180deg, #ffffff, #cfd6ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
 
-.header-badges {
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  max-width:1100px;
-  margin:12px auto 0;
-}
+        .header-content h1 {
+            font-size: clamp(1.4rem, 4vw, 2.2rem);
+            font-weight: 800;
+            margin: 0;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
 
-.header-badges .badge {
-  background: rgba(26,32,48,.6);
-  border:1px solid var(--clr-border);
-  padding:6px 14px;
-  border-radius:999px;
-  font-size:var(--fs-small);
-}
+        .subtext {
+            color: var(--clr-text-light);
+            font-size: 0.95rem;
+            margin: 0;
+            font-weight: 500;
+        }
 
-/* MAIN */
-main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: var(--space-l) var(--space-m) var(--space-xl);
-}
+        .header-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            max-width: 900px;
+            margin: 16px auto 0;
+        }
 
-section { margin-bottom: var(--space-xl); }
+        .header-badges .badge {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--clr-border);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #e2e8f0;
+            backdrop-filter: blur(8px);
+            transition: all var(--transition);
+        }
 
-section h2 {
-  font-size: var(--fs-h2);
-  font-weight: 700;
-  color: var(--clr-accent);
-}
+        .header-badges .badge:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--clr-border-hover);
+            transform: translateY(-1px);
+        }
 
-.subtext {
-  color: var(--clr-text-light);
-  font-size: var(--fs-small);
-}
+        /* MAIN */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 120px;
+        }
 
-/* CARDS PREMIUM */
-.card-list { display:grid; gap:var(--space-m); }
+        section {
+            margin-bottom: 50px;
+        }
 
-.card {
-  background: linear-gradient(180deg, #141823, #111420);
-  border:1px solid var(--clr-border);
-  border-radius:var(--radius);
-  padding:var(--space-m);
-  display:flex;
-  align-items:center;
-  gap:var(--space-m);
-  box-shadow:var(--shadow);
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-}
+        section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--clr-text);
+            margin: 0 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.01em;
+        }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
-  background: linear-gradient(180deg, #1a2030, #141823);
-}
+        section>.subtext {
+            margin-bottom: 24px;
+        }
 
-.card label {
-  display:flex;
-  align-items:center;
-  gap:var(--space-m);
-  width:100%;
-  cursor:pointer;
-}
+        /* CARDS PREMIUM */
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-.card .name {
-  font-weight: 600;
-  font-size: 1.02rem;
-}
+        .card {
+            background: var(--clr-card);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
 
-.card .price {
-  margin-left:auto;
-  font-weight: 800;
-  font-size: 1.05rem;
-  color: var(--clr-primary);
-}
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: var(--radius);
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
 
-/* CHECKBOX ELEGANTE */
-.card input[type="checkbox"] {
-  appearance:none;
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  border:1px solid var(--clr-border);
-  background:#0f131e;
-  position:relative;
-}
+        .card:hover {
+            background: var(--clr-card-hover);
+            border-color: var(--clr-border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
 
-.card input[type="checkbox"]:checked {
-  background: linear-gradient(180deg, #ff7c7c, #e05252);
-  border-color:#e05252;
-}
+        .card:hover::before {
+            opacity: 1;
+        }
 
-.card input[type="checkbox"]:checked::after {
-  content:"✓";
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  color:#111;
-  font-size:13px;
-  font-weight:900;
-}
+        .card label,
+        .card-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
+            gap: 16px;
+            margin: 0;
+        }
 
-/* SUB OPCIONES */
-.grouped-options {
-  margin-top:8px;
-  padding-left:44px;
-  display:none;
-  gap:6px;
-}
+        /* CHECKBOX ELEGANTE */
+        .card input[type="checkbox"],
+        .grouped-options input[type="checkbox"] {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 8px;
+            border: 2px solid #3f3f46;
+            background: rgba(0, 0, 0, 0.2);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
 
-.grouped-options label {
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
+        .card input[type="checkbox"]:hover,
+        .grouped-options input[type="checkbox"]:hover {
+            border-color: #52525b;
+        }
 
-.grouped-options .price {
-  margin-left:auto;
-  font-weight:700;
-  color:var(--clr-primary);
-}
+        .card input[type="checkbox"]:checked,
+        .grouped-options input[type="checkbox"]:checked {
+            background: var(--clr-primary);
+            border-color: var(--clr-primary);
+            box-shadow: 0 0 14px var(--clr-primary-glow);
+        }
 
-/* CTA */
-.cta-wrapper {
-  position: sticky;
-  bottom: 0;
-  padding: 16px;
-  background: linear-gradient(180deg, rgba(15,17,22,0), rgba(15,17,22,.9) 35%, rgba(15,17,22,1));
-  border-top:1px solid var(--clr-border);
-}
+        .card input[type="checkbox"]:checked::after,
+        .grouped-options input[type="checkbox"]:checked::after {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
 
-.cta-wrapper button {
-  width:100%;
-  max-width:900px;
-  padding:18px 28px;
-  font-size:1.05rem;
-  font-weight:800;
-  letter-spacing:.6px;
-  text-transform:uppercase;
-  border:none;
-  border-radius:999px;
-  background: linear-gradient(180deg, #ffd0d0, #f7b2b2);
-  cursor:pointer;
-  box-shadow: 0 14px 34px rgba(224,82,82,.35);
-}
+        .card-content .info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            gap: 4px;
+        }
 
-.cta-wrapper button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 18px 44px rgba(224,82,82,.45);
-}
+        .card .name,
+        .card-content .name {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--clr-text);
+            flex-grow: 1;
+        }
 
-/* MARCA DE FONDO */
-body::before {
-  content:"";
-  position:fixed;
-  inset:0;
-  background:url('logo.jpeg') no-repeat right 8% center;
-  background-size:var(--marca-size);
-  opacity:var(--marca-opacity);
-  filter: blur(var(--marca-blur));
-  pointer-events:none;
-  z-index:0;
-}
+        .card-content .description {
+            font-size: 0.85rem;
+            color: var(--clr-text-light);
+            line-height: 1.4;
+        }
 
-/* MOBILE */
-@media (max-width:600px){
-  .logo { height:70px; }
-  body::before {
-    background-position:center 18%;
-    background-size:68vw;
-    opacity:.02;
-    filter:blur(3px);
-  }
-}.card-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  gap: 15px;
-}
+        .card .price,
+        .card-content .price,
+        .grouped-options .price {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--clr-text);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 12px;
+            border-radius: 8px;
+            white-space: nowrap;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
 
-.card-content input {
-  margin-right: 10px;
-}
+        .card:has(input[type="checkbox"]:checked) {
+            border-color: var(--clr-primary);
+            background: rgba(244, 63, 94, 0.05);
+        }
 
-.card-content .info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+        .card:has(input[type="checkbox"]:checked) .price {
+            color: var(--clr-primary);
+            background: rgba(244, 63, 94, 0.1);
+            border-color: rgba(244, 63, 94, 0.2);
+        }
 
-.card-content .name {
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-}
+        /* SUB OPCIONES */
+        .grouped-options {
+            margin-top: 8px;
+            margin-bottom: 16px;
+            padding-left: 16px;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            border-left: 2px solid var(--clr-border);
+            margin-left: 24px;
+        }
 
-.card-content .description {
-  font-size: 13px;
-  color: #aaa;
-  line-height: 1.3;
-}
+        .grouped-options label {
+            background: rgba(24, 24, 27, 0.4);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
 
-.card-content .price {
-  font-weight: bold;
-  color: #ff4d4d;
-  white-space: nowrap;
-}
-</style>
+        .grouped-options label:hover {
+            background: rgba(39, 39, 42, 0.6);
+            border-color: var(--clr-border-hover);
+        }
 
+        .grouped-options label:has(input[type="checkbox"]:checked) {
+            background: rgba(244, 63, 94, 0.05);
+            border-color: rgba(244, 63, 94, 0.3);
+        }
+
+        .grouped-options .price {
+            margin-left: auto;
+            font-size: 0.95rem;
+        }
+
+        /* RESUMEN DEL PEDIDO */
+        #resumenPedido {
+            max-width: 900px;
+            margin: 0 auto 24px;
+            padding: 24px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            background: linear-gradient(145deg, rgba(24, 24, 27, 0.8), rgba(9, 9, 11, 0.9));
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #resumenPedido::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #f43f5e, #fb7185);
+        }
+
+        #resumenPedido .title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #listaResumen {
+            font-size: 0.95rem;
+            color: var(--clr-text-light);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed var(--clr-border-hover);
+        }
+
+        #resumenPedido .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 800;
+            font-size: 1.15rem;
+        }
+
+        #totalPedido {
+            color: var(--clr-primary);
+            font-size: 1.4rem;
+        }
+
+        #msgCombo {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.1);
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        /* CTA */
+        .cta-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(0deg, rgba(9, 9, 11, 1) 40%, rgba(9, 9, 11, 0.8) 80%, rgba(9, 9, 11, 0));
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .cta-wrapper button {
+            pointer-events: auto;
+            width: 100%;
+            max-width: 500px;
+            padding: 18px 32px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: white;
+            border: none;
+            border-radius: 100px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cta-wrapper button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, #2dec6b, #159c8d);
+        }
+
+        .cta-wrapper button:active {
+            transform: translateY(1px);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 20px 80px;
+            color: var(--clr-text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            border-top: 1px solid var(--clr-border);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: var(--clr-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 600px) {
+            header {
+                padding: 16px;
+            }
+
+            .header-content {
+                align-items: flex-start;
+            }
+
+            .logo {
+                height: 65px;
+            }
+
+            .header-content h1 {
+                font-size: 1.3rem;
+            }
+
+            main {
+                padding: 24px 16px 140px;
+            }
+
+            .card,
+            .grouped-options label {
+                padding: 14px 16px;
+            }
+
+            .card .name,
+            .card-content .name {
+                font-size: 0.95rem;
+            }
+
+            .card .price,
+            .card-content .price,
+            .grouped-options .price {
+                font-size: 0.95rem;
+                padding: 4px 8px;
+            }
+
+            body::after {
+                background-position: center 18%;
+                background-size: 68vw;
+                opacity: .02;
+                filter: blur(3px);
+            }
+
+            #resumenPedido {
+                padding: 20px;
+                margin: 0 0 24px;
+                width: auto;
+            }
+
+            .cta-wrapper {
+                padding: 16px;
+            }
+        }
+
+        /* HIGHLIGHT SECTION (Diseño Web) */
+        .highlight-section {
+            position: relative;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(244, 63, 94, 0.15));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 32px 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.2);
+            margin-bottom: 50px;
+        }
+
+        .highlight-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+            animation: rotateGlow 15s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotateGlow {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .highlight-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+            text-transform: uppercase;
+        }
+
+        .portfolio-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .portfolio-link {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--clr-border);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .portfolio-link:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .portfolio-placeholder {
+            font-size: 0.85rem;
+            color: var(--clr-text-light);
+            font-style: italic;
+            padding: 8px 0;
+        }
+
+        .highlight-card {
+            background: rgba(24, 24, 27, 0.8);
+            border-color: rgba(59, 130, 246, 0.3);
+            margin-bottom: 0 !important;
+        }
+
+        .highlight-card:hover {
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .highlight-section {
+                padding: 24px 20px;
+            }
+        }
+    </style>
 </head>
+
 <body>
- <header>
-  <div class="header-content">
-    <img src="logo.jpeg" alt="Logo FT_STORE" class="logo">
-    <h1>ACCESOS PREMIUM GARANTIZADOS ⚡ Activación en minutos</h1>
-    <p class="subtext" style="margin:6px 0 0;color:#aab1c5;">Contratando en combo obtenés descuentos exclusivos • Soporte por WhatsApp</p>
-  </div>
-
-  <div class="header-badges">
-    <span class="badge">✅ +500 cuentas activadas</span>
-     <span class="badge">🏆 Servicio recomendado</span>
-    <span class="badge">💬 Atención personalizada</span>
-    <span class="badge">⚡ Entrega inmediata</span>
-    <span class="badge">🔰 Soporte</span>
-  </div>
-</header>
-
-  <main>
-
-    <!-- Seguidores -->
-    <section id="seguidores">
-      <h2>👥 Venta de Seguidores</h2>
-      <p class="subtext">Consultanos para obtener seguidores reales y segmentados.</p>
-      <div class="card-list">
-        <div class="card">
-          <label>
-            <input type="checkbox" data-name="Seguidores Instagram y Facebook" data-price="CONSULTAR" />
-            <span class="name">Seguidores Instagram y Facebook</span>
-            <span class="price">Consultar</span>
-          </label>
-        </div>
-        <div class="card">
-          <label>
-            <input type="checkbox" data-name="Seguidores TikTok" data-price="CONSULTAR" />
-            <span class="name">Seguidores TikTok</span>
-            <span class="price">Consultar</span>
-          </label>
-        </div>
-        <div class="card">
-          <label>
-            <input type="checkbox" data-name="Seguidores YouTube" data-price="CONSULTAR" />
-            <span class="name">Seguidores YouTube</span>
-            <span class="price">Consultar</span>
-          </label>
-        </div>
-      </div>
-    </section>
-
-    <!-- Streaming Premium -->
-    <section id="streaming">
-      <h2>🎞️ Streaming Premium</h2>
-      <p class="subtext">Precio por pantalla.</p>
-      <div class="card-list">
-        <div class="card"><label><input type="checkbox" data-name="Netflix Original 1 Disp." data-price="6000" /><span class="name">🎬 Netflix Original 1 Disp.</span><span class="price">$6000</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Netflix Standard Cuenta completa" data-price="SIN STOCK" /><span class="name">🎬 Netflix Standard Cuenta completa</span><span class="price">SIN STOCK</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Netflix Premium Cuenta completa" data-price="18900" /><span class="name">🎬 Netflix Premium Cuenta completa</span><span class="price">$18500</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Disney+ Premium 1 Disp." data-price="4900" /><span class="name">🏰 Disney+ Premium 1 Disp.</span><span class="price">$4900</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Disney+ Cuenta Completa" data-price="12800" /><span class="name">🏰 Disney+ Cuenta Completa</span><span class="price">$12800</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Amazon Prime Video 1 Disp." data-price="2900" /><span class="name">📦 Amazon Prime Video 1 Disp.</span><span class="price">$2900</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Amazon Prime Video Cuenta Completa" data-price="4800" /><span class="name">📦 Amazon Prime Video Cuenta Completa</span><span class="price">$4800</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Apple TV+ 1 Disp." data-price="3800" /><span class="name">🌐 Apple TV+ 1 Disp.</span><span class="price">$3800</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Apple TV+ Cuenta Completa" data-price="7500" /><span class="name">🌐 Apple TV+ Cuenta Completa</span><span class="price">$7500</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Max (HBO) 1 Disp" data-price="2900" /><span class="name">🔮 Max (HBO) 1 Disp</span><span class="price">$2900</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Max (HBO) Cuenta Completa" data-price="4800" /><span class="name">🔮 Max (HBO) Cuenta Completa</span><span class="price">$4800</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Paramount+ 1 Disp" data-price="1800" /><span class="name">🗻 Paramount+ 1 Disp</span><span class="price">$1800</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Paramount+ Cuenta Completa" data-price="2800" /><span class="name">🗻 Paramount+ Cuenta Completa</span><span class="price">$2800</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Vix Premium 1 perfil" data-price="1700" /><span class="name">🔥 Vix Premium 1 perfil</span><span class="price">$1700</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Vix Premium Cuenta Completa" data-price="3200" /><span class="name">🔥 Vix Premium Cuenta Completa</span><span class="price">$3200</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Crunchyroll" data-price="1800" /><span class="name">🔥 Crunchyroll</span><span class="price">$1800</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Crunchyroll Completa" data-price="3800" /><span class="name">🔥 Crunchyroll Completa</span><span class="price">$3800</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Mubi" data-price="1900" /><span class="name">🔥 Mubi</span><span class="price">$1900</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Mubi Completa" data-price="3000" /><span class="name">🔥 Mubi Completa</span><span class="price">$3000</span></label></div>
-      </div>
-    </section>
-
-    <!-- Servicios Digitales -->
-    <section id="digitales">
-      <h2>🛠️ Servicios Digitales y Suscripciones</h2>
-      <div class="card-list">
-        <div class="card">
-          <label>
-            <input type="checkbox" data-name="Canva Pro" data-price="CONSULTAR" class="parent-option" />
-            <span class="name">🎨 Canva Pro</span>
-            <span class="price">Varias opciones</span>
-          </label>
-        </div>
-        <div class="grouped-options" data-parent="Canva Pro">
-          <label><input type="checkbox" data-name="Canva Pro 1 mes" data-price="3500" />1 mes <span class="price">$3500</span></label>
-          <label><input type="checkbox" data-name="Canva Pro 2 meses" data-price="5000" />2 meses <span class="price">$5000</span></label>
-          <label><input type="checkbox" data-name="Canva Pro 3 meses" data-price="7500" />3 meses <span class="price">$7500</span></label>
-          <label><input type="checkbox" data-name="Canva Pro 6 meses" data-price="13000" />6 meses <span class="price">$13000</span></label>
-          <label><input type="checkbox" data-name="Canva Pro 12 meses" data-price="20000" />12 meses <span class="price">$20000</span></label>
+    <header>
+        <div class="header-content">
+            <img src="logo.jpeg" alt="Logo FT_STORE" class="logo">
+            <div class="header-text">
+                <h1>ACCESOS PREMIUM GARANTIZADOS ⚡ Activación en minutos</h1>
+                <p class="subtext">Contratando en combo obtenés descuentos exclusivos • Soporte por WhatsApp</p>
+            </div>
         </div>
 
-        <div class="card"><label><input type="checkbox" data-name="ChatGPT" data-price="6000" /><span class="name">🤖 ChatGPT</span><span class="price">$6000</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Gemini" data-price="6000" /><span class="name">🧠 Gemini</span><span class="price">$6000</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="CapCut Pro" data-price="6000" /><span class="name">✂️ CapCut Pro</span><span class="price">$6000</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Scrib" data-price="4000" /><span class="name">✍️ Scrib</span><span class="price">27 a 30 días</span><span class="price">$4000</span></label></div>
-
-        <div class="card">
-          <label>
-            <input type="checkbox" data-name="YouTube Premium" data-price="CONSULTAR" class="parent-option" />
-            <span class="name">📺 YouTube Premium</span>
-            <span class="price">Planes</span>
-          </label>
+        <div class="header-badges">
+            <span class="badge">✅ +500 cuentas activadas</span>
+            <span class="badge">🏆 Servicio recomendado</span>
+            <span class="badge">💬 Atención personalizada</span>
+            <span class="badge">⚡ Entrega inmediata</span>
+            <span class="badge">🔰 Soporte</span>
         </div>
-        <div class="grouped-options" data-parent="YouTube Premium">
-          <label><input type="checkbox" data-name="YouTube Premium Individual 1 Mes" data-price="3000" />Plan Individual 1 Mes <span class="price">$3000</span></label>
-          <label><input type="checkbox" data-name="YouTube Premium Individual 2 Meses" data-price="5300" />Plan Individual 2 Meses <span class="price">$5300</span></label>
-          <label><input type="checkbox" data-name="YouTube Premium Individual 3 Meses" data-price="7200" />Plan Individual 3 Meses <span class="price">$7200</span></label>
-          <label><input type="checkbox" data-name="YouTube Premium Individual 4 Meses" data-price="8500" />Plan Individual 4 Meses <span class="price">$8500</span></label>
+    </header>
+
+    <main>
+
+        <!-- Seguidores -->
+        <section id="seguidores">
+            <h2>👥 Venta de Seguidores</h2>
+            <p class="subtext">Consultanos para obtener seguidores reales y segmentados.</p>
+            <div class="card-list">
+                <div class="card">
+                    <label>
+                        <input type="checkbox" data-name="Seguidores Instagram y Facebook" data-price="CONSULTAR" />
+                        <span class="name">Seguidores Instagram y Facebook</span>
+                        <span class="price">Consultar</span>
+                    </label>
+                </div>
+                <div class="card">
+                    <label>
+                        <input type="checkbox" data-name="Seguidores TikTok" data-price="CONSULTAR" />
+                        <span class="name">Seguidores TikTok</span>
+                        <span class="price">Consultar</span>
+                    </label>
+                </div>
+                <div class="card">
+                    <label>
+                        <input type="checkbox" data-name="Seguidores YouTube" data-price="CONSULTAR" />
+                        <span class="name">Seguidores YouTube</span>
+                        <span class="price">Consultar</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Streaming Premium -->
+        <section id="streaming">
+            <h2>🎞️ Streaming Premium</h2>
+            <p class="subtext">Precio por pantalla.</p>
+            <div class="card-list">
+                <div class="card"><label><input type="checkbox" data-name="Netflix Original 1 Disp."
+                            data-price="6000" /><span class="name">🎬 Netflix Original 1 Disp.</span><span
+                            class="price">$6000</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Netflix Standard Cuenta completa"
+                            data-price="SIN STOCK" /><span class="name">🎬 Netflix Standard Cuenta completa</span><span
+                            class="price">SIN STOCK</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Netflix Premium Cuenta completa"
+                            data-price="18900" /><span class="name">🎬 Netflix Premium Cuenta completa</span><span
+                            class="price">$18500</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Disney+ Premium 1 Disp."
+                            data-price="4900" /><span class="name">🏰 Disney+ Premium 1 Disp.</span><span
+                            class="price">$4900</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Disney+ Cuenta Completa"
+                            data-price="12800" /><span class="name">🏰 Disney+ Cuenta Completa</span><span
+                            class="price">$12800</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Amazon Prime Video 1 Disp."
+                            data-price="2900" /><span class="name">📦 Amazon Prime Video 1 Disp.</span><span
+                            class="price">$2900</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Amazon Prime Video Cuenta Completa"
+                            data-price="4800" /><span class="name">📦 Amazon Prime Video Cuenta Completa</span><span
+                            class="price">$4800</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Apple TV+ 1 Disp." data-price="3800" /><span
+                            class="name">🌐 Apple TV+ 1 Disp.</span><span class="price">$3800</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Apple TV+ Cuenta Completa"
+                            data-price="7500" /><span class="name">🌐 Apple TV+ Cuenta Completa</span><span
+                            class="price">$7500</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Max (HBO) 1 Disp" data-price="2900" /><span
+                            class="name">🔮 Max (HBO) 1 Disp</span><span class="price">$2900</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Max (HBO) Cuenta Completa"
+                            data-price="4800" /><span class="name">🔮 Max (HBO) Cuenta Completa</span><span
+                            class="price">$4800</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Paramount+ 1 Disp" data-price="1800" /><span
+                            class="name">🗻 Paramount+ 1 Disp</span><span class="price">$1800</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Paramount+ Cuenta Completa"
+                            data-price="2800" /><span class="name">🗻 Paramount+ Cuenta Completa</span><span
+                            class="price">$2800</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Vix Premium 1 perfil"
+                            data-price="1700" /><span class="name">🔥 Vix Premium 1 perfil</span><span
+                            class="price">$1700</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Vix Premium Cuenta Completa"
+                            data-price="3200" /><span class="name">🔥 Vix Premium Cuenta Completa</span><span
+                            class="price">$3200</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Crunchyroll" data-price="1800" /><span
+                            class="name">🔥 Crunchyroll</span><span class="price">$1800</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Crunchyroll Completa"
+                            data-price="3800" /><span class="name">🔥 Crunchyroll Completa</span><span
+                            class="price">$3800</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Mubi" data-price="1900" /><span
+                            class="name">🔥 Mubi</span><span class="price">$1900</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Mubi Completa" data-price="3000" /><span
+                            class="name">🔥 Mubi Completa</span><span class="price">$3000</span></label></div>
+            </div>
+        </section>
+
+        <!-- Servicios Digitales -->
+        <section id="digitales">
+            <h2>🛠️ Servicios Digitales y Suscripciones</h2>
+            <div class="card-list">
+                <div class="card">
+                    <label>
+                        <input type="checkbox" data-name="Canva Pro" data-price="CONSULTAR" class="parent-option" />
+                        <span class="name">🎨 Canva Pro</span>
+                        <span class="price">Varias opciones</span>
+                    </label>
+                </div>
+                <div class="grouped-options" data-parent="Canva Pro">
+                    <label><input type="checkbox" data-name="Canva Pro 1 mes" data-price="3500" />1 mes <span
+                            class="price">$3500</span></label>
+                    <label><input type="checkbox" data-name="Canva Pro 2 meses" data-price="5000" />2 meses <span
+                            class="price">$5000</span></label>
+                    <label><input type="checkbox" data-name="Canva Pro 3 meses" data-price="7500" />3 meses <span
+                            class="price">$7500</span></label>
+                    <label><input type="checkbox" data-name="Canva Pro 6 meses" data-price="13000" />6 meses <span
+                            class="price">$13000</span></label>
+                    <label><input type="checkbox" data-name="Canva Pro 12 meses" data-price="20000" />12 meses <span
+                            class="price">$20000</span></label>
+                </div>
+
+                <div class="card"><label><input type="checkbox" data-name="ChatGPT" data-price="6000" /><span
+                            class="name">🤖 ChatGPT</span><span class="price">$6000</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Gemini" data-price="6000" /><span
+                            class="name">🧠 Gemini</span><span class="price">$6000</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="CapCut Pro" data-price="6000" /><span
+                            class="name">✂️ CapCut Pro</span><span class="price">$6000</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Scrib" data-price="4000" /><span
+                            class="name">✍️ Scrib</span><span class="price">$4000</span></label></div>
+
+                <div class="card">
+                    <label>
+                        <input type="checkbox" data-name="YouTube Premium" data-price="CONSULTAR"
+                            class="parent-option" />
+                        <span class="name">📺 YouTube Premium</span>
+                        <span class="price">Planes</span>
+                    </label>
+                </div>
+                <div class="grouped-options" data-parent="YouTube Premium">
+                    <label><input type="checkbox" data-name="YouTube Premium Individual 1 Mes" data-price="3000" />Plan
+                        Individual 1 Mes <span class="price">$3000</span></label>
+                    <label><input type="checkbox" data-name="YouTube Premium Individual 2 Meses"
+                            data-price="5300" />Plan Individual 2 Meses <span class="price">$5300</span></label>
+                    <label><input type="checkbox" data-name="YouTube Premium Individual 3 Meses"
+                            data-price="7200" />Plan Individual 3 Meses <span class="price">$7200</span></label>
+                    <label><input type="checkbox" data-name="YouTube Premium Individual 4 Meses"
+                            data-price="8500" />Plan Individual 4 Meses <span class="price">$8500</span></label>
+                </div>
+
+                <div class="card"><label><input type="checkbox" data-name="Tidal HIFI" data-price="1900" /><span
+                            class="name">🎵 Tidal HIFI</span><span class="price">$1900</span></label></div>
+
+                <div class="card">
+                    <label>
+                        <input type="checkbox" data-name="Spotify" data-price="CONSULTAR" class="parent-option" />
+                        <span class="name">🎼 Spotify</span>
+                        <span class="price">Planes</span>
+                    </label>
+                </div>
+                <div class="grouped-options" data-parent="Spotify">
+                    <label><input type="checkbox" data-name="Spotify 1 Mes" data-price="3000" />Plan Individual 1 Mes
+                        <span class="price">$3000</span></label>
+                    <label><input type="checkbox" data-name="Spotify 2 Meses" data-price="5000" />Plan Individual 2
+                        Meses <span class="price">$5000</span></label>
+                    <label><input type="checkbox" data-name="Spotify 3 Meses" data-price="7000" />Plan Individual 3
+                        Meses <span class="price">$7000</span></label>
+                </div>
+            </div>
+        </section>
+
+        <!-- TV Online -->
+        <section id="tvonline">
+            <h2>📡 Servicios de TV Online Android</h2>
+            <p class="subtext">Consultá disponibilidad y precios.</p>
+            <div class="card-list">
+
+                <div class="card">
+                    <label class="card-content">
+                        <input type="checkbox" data-name="Paquetes TV Online" data-price="CONSULTAR" />
+
+                        <div class="info">
+                            <span class="name">Paquetes TV Online Android TV</span>
+
+                            <span class="description">
+                                Pack Fútbol Argentina · TV en vivo · Canales premium · Películas y Series de todas las
+                                plataformas On Demand "Hasta 3 dispositivos"
+                            </span>
+                        </div>
+
+                        <span class="price">Consultar</span>
+                    </label>
+                </div>
+                <div class="card"><label><input type="checkbox" data-name="Paquetes TV Online Smart TV"
+                            data-price="CONSULTAR" /><span class="name">Paquetes TV Online Para Smart TV</span><span
+                            class="price">Consultar</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Paquetes TV Online Roku"
+                            data-price="CONSULTAR" /><span class="name">Paquetes TV Online para Roku</span><span
+                            class="price">Consultar</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Flow Full 1 dispositivo"
+                            data-price="6000" /><span class="name">Flow Full 1 dispositivo</span><span
+                            class="price">$6000</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Flow Full Cuenta completa"
+                            data-price="11000" /><span class="name">Flow Full Cuenta COMPLETA</span><span
+                            class="price">$11000</span></label></div>
+            </div>
+        </section>
+
+        <section id="Juegos">
+            <h2>🎮 Juegos y suscripciones</h2>
+            <div class="card-list">
+                <div class="card"><label><input type="checkbox" data-name="GAMEPASS XBOX ULTIMATE 1 Mes"
+                            data-price="12000" /><span class="name">GAMEPASS XBOX ULTIMATE 1 Mes</span><span
+                            class="price">$12000</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="GAMEPASS XBOX ULTIMATE 2 Meses"
+                            data-price="20000" /><span class="name">GAMEPASS XBOX ULTIMATE 2 Meses</span><span
+                            class="price">$20000</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="GAMEPASS XBOX ULTIMATE 4 Meses"
+                            data-price="35000" /><span class="name">GAMEPASS XBOX ULTIMATE 4 Meses</span><span
+                            class="price">$35000</span></label></div>
+                <div class="card"><label><input type="checkbox" data-name="Prime Gaming" data-price="9000" /><span
+                            class="name">Prime Gaming</span><span class="price">$9000</span></label></div>
+            </div>
+        </section>
+
+        <!-- Diseño Web (Nuevo Servicio Estrella) -->
+        <section id="diseno-web" class="highlight-section">
+            <div class="highlight-content">
+                <div class="highlight-badge">⭐️ NUEVO SERVICIO: POTENCIÁ TU NEGOCIO</div>
+                <h2 style="font-size: 1.8rem; margin-bottom: 12px; color: #fff;">💻 Diseño de Páginas Web Profesionales
+                </h2>
+                <p class="subtext" style="font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; max-width: 600px;">
+                    Posicioná tu marca y multiplicá tus ventas con una web a medida, rápida y moderna como esta.
+                    Especialistas en tiendas online, portfolios y catálogos PROXIMAMENTE DISEÑOS.
+                </p>
+
+                <div class="portfolio-links">
+                    <!-- 
+                    ============= INSTRUCCIONES PARA AGREGAR TUS TRABAJOS =============
+                    Pega a continuación los enlaces a tus trabajos previos para que los 
+                    potenciales clientes vean tu nivel.
+                    
+                    Ejemplo de cómo agregar un link (quita los comentarios <!-- y -->):
+
+                    <a href="https://tienda.com" target="_blank" class="portfolio-link">🌐 Ver portfolio 1 ↗</a>
+                    <a href="https://agencia.com" target="_blank" class="portfolio-link">🛍️ Mi Tienda Ejemplo ↗</a>
+                    ===================================================================
+                    -->
+
+                    <!-- Podés borrar esta línea de abajo cuando pegues tus propios links -->
+                    <div class="portfolio-placeholder">📁 Links a portfolio disponibles pidiendo por WhatsApp</div>
+                </div>
+
+                <div class="card-list">
+                    <div class="card highlight-card">
+                        <label>
+                            <input type="checkbox" data-name="Diseño Web Institucional o Catálogo"
+                                data-price="CONSULTAR" />
+                            <div class="card-content">
+                                <div class="info">
+                                    <span class="name">🚀 Diseño Web Premium Completo</span>
+                                    <span class="description">Dominio, hosting rápido y soporte incluido.</span>
+                                </div>
+                                <span class="price"
+                                    style="color: #3b82f6; border-color: rgba(59, 130, 246, 0.3); background: rgba(59, 130, 246, 0.1);">Consultar
+                                    Plan</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pagos">
+            <h2>💳 Medios de pago</h2>
+            <div class="card-list">
+                <div class="card"><span class="name">Mercado Pago</span></div>
+                <div class="card"><span class="name">Transferencia bancaria</span></div>
+                <div class="card"><span class="name">Ualá</span></div>
+                <div class="card"><span class="name">Brubank</span></div>
+            </div>
+        </section>
+
+        <footer>
+            FT Streaming – Todos los servicios garantizados.<br />
+            ¿Necesitás algo especial? <a href="#" id="linkWsFooter">Escribime</a>.
+        </footer>
+    </main>
+
+    <div id="resumenPedido" style="display:none;">
+        <div class="title">🧾 Resumen del pedido</div>
+        <div id="listaResumen"></div>
+        <div class="total-row">
+            <span>Total estimado</span>
+            <span id="totalPedido">$0</span>
         </div>
-
-        <div class="card"><label><input type="checkbox" data-name="Tidal HIFI" data-price="1900" /><span class="name">🎵 Tidal HIFI</span><span class="price">$1900</span></label></div>
-
-        <div class="card">
-          <label>
-            <input type="checkbox" data-name="Spotify" data-price="CONSULTAR" class="parent-option" />
-            <span class="name">🎼 Spotify</span>
-            <span class="price">Planes</span>
-          </label>
+        <div id="msgCombo" style="display:none;">
+            🔥 Tenés combo activo con descuento
         </div>
-        <div class="grouped-options" data-parent="Spotify">
-          <label><input type="checkbox" data-name="Spotify 1 Mes" data-price="3000" />Plan Individual 1 Mes <span class="price">$3000</span></label>
-          <label><input type="checkbox" data-name="Spotify 2 Meses" data-price="5000" />Plan Individual 2 Meses <span class="price">$5000</span></label>
-          <label><input type="checkbox" data-name="Spotify 3 Meses" data-price="7000" />Plan Individual 3 Meses <span class="price">$7000</span></label>
-        </div>
-      </div>
-    </section>
-
-    <!-- TV Online -->
-    <section id="tvonline">
-      <h2>📡 Servicios de TV Online Android</h2>
-      <p class="subtext">Consultá disponibilidad y precios.</p>
-      <div class="card-list">
-        
-        <div class="card">
-  <label class="card-content">
-    <input type="checkbox" data-name="Paquetes TV Online" data-price="CONSULTAR" />
-
-    <div class="info">
-      <span class="name">Paquetes TV Online Android TV</span>
-
-      <span class="description">
-        Pack Fútbol Argentina · TV en vivo · Canales premium · Películas y Series de todas las pa+lataformas On Demand "Hasta 3 dispositivos"
-      </span>
     </div>
 
-    <span class="price">Consultar</span>
-  </label>
-</div>
-        <div class="card"><label><input type="checkbox" data-name="Paquetes TV Online Smart TV" data-price="CONSULTAR" /><span class="name">Paquetes TV Online Para Smart TV</span><span class="price">Consultar</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Paquetes TV Online Roku" data-price="CONSULTAR" /><span class="name">Paquetes TV Online para Roku</span><span class="price">Consultar</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Flow Full 1 dispositivo" data-price="6500" /><span class="name">Flow Full 1 dispositivo</span><span class="price">$6500</span></label></div>
-        <div class="card"><label><input type="checkbox" data-name="Flow Full Cuenta completa" data-price="12000" /><span class="name">Flow Full Cuenta COMPLETA</span><span class="price">$12000</span></label></div>
-      </div>
-    </section>
 
-    <section id="Juegos">
-      <h2>🎮 Juegos y suscripciones</h2>
-      <div class="card"><label><input type="checkbox" data-name="GAMEPASS XBOX ULTIMATE 1 Mes" data-price="12000" /><span class="name">GAMEPASS XBOX ULTIMATE 1 Mes</span><span class="price">$12000</span></label></div>
-      <div class="card"><label><input type="checkbox" data-name="GAMEPASS XBOX ULTIMATE 2 Meses" data-price="20000" /><span class="name">GAMEPASS XBOX ULTIMATE 2 Meses</span><span class="price">$20000</span></label></div>
-      <div class="card"><label><input type="checkbox" data-name="GAMEPASS XBOX ULTIMATE 4 Meses" data-price="35000" /><span class="name">GAMEPASS XBOX ULTIMATE 4 Meses</span><span class="price">$35000</span></label></div>
-      <div class="card"><label><input type="checkbox" data-name="Prime Gaming" data-price="9000" /><span class="name">Prime Gaming</span><span class="price">$9000</span></label></div>
-    </section>
+    <div class="cta-wrapper">
+        <button id="btnEnviar" aria-label="Enviar pedido por WhatsApp">✅ ACTIVAR AHORA POR WHATSAPP</button>
+    </div>
 
-    <section id="pagos" style="margin-top:32px;">
-      <h2>💳 Medios de pago</h2>
-      <div class="card-list">
-        <div class="card"><span class="name">Mercado Pago</span></div>
-        <div class="card"><span class="name">Transferencia bancaria</span></div>
-        <div class="card"><span class="name">Ualá</span></div>
-        <div class="card"><span class="name">Brubank</span></div>
-      </div>
-    </section>
+    <script>
+        // Helper: mostrar/ocultar grupos cuando el parent se activa
+        document.querySelectorAll('.parent-option').forEach(parentChk => {
+            const parentName = parentChk.getAttribute('data-name');
+            const group = document.querySelector(`.grouped-options[data-parent="${parentName}"]`);
+            // si hay grupo, sincronizar visibilidad
+            if (group) {
+                const setVisibility = () => { group.style.display = parentChk.checked ? 'flex' : 'none'; };
+                setVisibility();
+                parentChk.addEventListener('change', setVisibility);
+            }
+        });
 
-    <footer>
-      FT Streaming – Todos los servicios garantizados.<br/>
-      ¿Necesitás algo especial? <a href="#" id="linkWsFooter">Escribime</a>.
-    </footer>
-  </main>
-  <div id="resumenPedido" style="max-width:900px;margin:0 auto 12px;padding:16px;border-radius:16px;border:1px solid #242a3a;background:#141823;display:none;">
-  <div style="font-weight:700;margin-bottom:8px;">🧾 Resumen del pedido</div>
-  <div id="listaResumen" style="font-size:.95rem;color:#aab1c5;"></div>
-  <div style="display:flex;justify-content:space-between;margin-top:12px;font-weight:800;">
-    <span>Total estimado</span>
-    <span id="totalPedido" style="color:#e05252;">$0</span>
-  </div>
-  <div id="msgCombo" style="margin-top:6px;font-size:.85rem;color:#8bb8ff;display:none;">
-    🔥 Tenés combo activo con descuento
-  </div>
-</div>
+        function armarMensaje() {
+            const checks = document.querySelectorAll('input[type="checkbox"]:checked');
 
+            if (!checks.length) {
+                return "Hola! Quiero info sobre tus servicios.";
+            }
 
-  <div class="cta-wrapper">
-    <button id="btnEnviar" aria-label="Enviar pedido por WhatsApp">✅ ACTIVAR AHORA POR WHATSAPP</button>
-  </div>
+            let total = 0;
+            let items = [];
 
-  <script>
-    // Helper: mostrar/ocultar grupos cuando el parent se activa
-    document.querySelectorAll('.parent-option').forEach(parentChk => {
-      const parentName = parentChk.getAttribute('data-name');
-      const group = document.querySelector(`.grouped-options[data-parent="${parentName}"]`);
-      // si hay grupo, sincronizar visibilidad
-      if(group){
-        const setVisibility = () => { group.style.display = parentChk.checked ? 'grid' : 'none'; };
-        setVisibility();
-        parentChk.addEventListener('change', setVisibility);
-      }
-    });
+            checks.forEach(ch => {
+                const nombre = ch.getAttribute('data-name');
+                const precio = parseInt(ch.getAttribute('data-price'));
 
-    function armarMensaje() {
-  const checks = document.querySelectorAll('input[type="checkbox"]:checked');
+                if (!isNaN(precio)) {
+                    total += precio;
+                    items.push(`• ${nombre} – $${precio}`);
+                } else {
+                    items.push(`• ${nombre} – Consultar`);
+                }
+            });
 
-  if (!checks.length) {
-    return "Hola! Quiero info sobre tus servicios.";
-  }
-
-  let total = 0;
-  let items = [];
-
-  checks.forEach(ch => {
-    const nombre = ch.getAttribute('data-name');
-    const precio = parseInt(ch.getAttribute('data-price'));
-
-    if (!isNaN(precio)) {
-      total += precio;
-      items.push(`• ${nombre} – $${precio}`);
-    } else {
-      items.push(`• ${nombre} – Consultar`);
-    }
-  });
-
-  let msg =
-`Hola! Quiero activar los siguientes servicios 👇
+            let msg =
+                `Hola! Quiero activar los siguientes servicios 👇
 
 ${items.join('\n')}
 
 💰 Total estimado: $${total}
 `;
 
-  if (checks.length >= 2) {
-    msg += `\n🔥 Consulto precio combo por varios servicios\n`;
-  }
+            if (checks.length >= 2) {
+                msg += `\n🔥 Consulto precio combo por varios servicios\n`;
+            }
 
-  msg += `\nVengo desde tu página web. Quedo atento 👍`;
+            msg += `\nVengo desde tu página web. Quedo atento 👍`;
 
-  return msg;
-}
+            return msg;
+        }
 
-    document.getElementById('btnEnviar').addEventListener('click', enviarWhatsApp);
-    document.getElementById('linkWsFooter').addEventListener('click', function(e){ e.preventDefault(); enviarWhatsApp(); });
+        document.getElementById('btnEnviar').addEventListener('click', enviarWhatsApp);
+        document.getElementById('linkWsFooter').addEventListener('click', function (e) { e.preventDefault(); enviarWhatsApp(); });
 
-    // UX: si chekeás sub-opciones, marcar también el parent
-    document.querySelectorAll('.grouped-options input[type="checkbox"]').forEach(subChk => {
-      subChk.addEventListener('change', () => {
-        const parentName = subChk.closest('.grouped-options')?.getAttribute('data-parent');
-        if(!parentName) return;
-        const parent = document.querySelector(`.parent-option[data-name="${parentName}"]`);
-        if(!parent) return;
-        // si alguna sub-opción está marcada, marcar el padre; si ninguna está marcada, desmarcar padre
-        const anyChecked = Array.from(document.querySelectorAll(`.grouped-options[data-parent="${parentName}"] input[type=checkbox]`)).some(i=>i.checked);
-        parent.checked = anyChecked;
-        // mantener visibilidad
-        parent.dispatchEvent(new Event('change'));
-      });
-    });
-function actualizarResumen() {
-  const checks = document.querySelectorAll('input[type="checkbox"]:checked');
-  const lista = document.getElementById('listaResumen');
-  const totalEl = document.getElementById('totalPedido');
-  const box = document.getElementById('resumenPedido');
-  const comboMsg = document.getElementById('msgCombo');
+        // UX: si chekeás sub-opciones, marcar también el parent
+        document.querySelectorAll('.grouped-options input[type="checkbox"]').forEach(subChk => {
+            subChk.addEventListener('change', () => {
+                const parentName = subChk.closest('.grouped-options')?.getAttribute('data-parent');
+                if (!parentName) return;
+                const parent = document.querySelector(`.parent-option[data-name="${parentName}"]`);
+                if (!parent) return;
+                // si alguna sub-opción está marcada, marcar el padre; si ninguna está marcada, desmarcar padre
+                const anyChecked = Array.from(document.querySelectorAll(`.grouped-options[data-parent="${parentName}"] input[type=checkbox]`)).some(i => i.checked);
+                parent.checked = anyChecked;
+                // mantener visibilidad
+                parent.dispatchEvent(new Event('change'));
+            });
+        });
 
-  let total = 0;
-  let items = [];
+        function actualizarResumen() {
+            const checks = document.querySelectorAll('input[type="checkbox"]:checked');
+            const lista = document.getElementById('listaResumen');
+            const totalEl = document.getElementById('totalPedido');
+            const box = document.getElementById('resumenPedido');
+            const comboMsg = document.getElementById('msgCombo');
 
-  checks.forEach(ch => {
-    const nombre = ch.getAttribute('data-name');
-    const precio = parseInt(ch.getAttribute('data-price'));
-    if (!isNaN(precio)) {
-      total += precio;
-      items.push(`• ${nombre} – $${precio}`);
-    } else {
-      items.push(`• ${nombre} – Consultar`);
-    }
-  });
+            let total = 0;
+            let items = [];
 
-  if (items.length === 0) {
-    box.style.display = 'none';
-    return;
-  }
+            checks.forEach(ch => {
+                const nombre = ch.getAttribute('data-name');
+                const precio = parseInt(ch.getAttribute('data-price'));
+                if (!isNaN(precio)) {
+                    total += precio;
+                    items.push(`• ${nombre} – $${precio}`);
+                } else {
+                    items.push(`• ${nombre} – Consultar`);
+                }
+            });
 
-  box.style.display = 'block';
-  lista.innerHTML = items.join('<br>');
-  totalEl.textContent = `$${total}`;
+            if (items.length === 0) {
+                box.style.display = 'none';
+                return;
+            }
 
-  // combo simple: 2 o más servicios
-  comboMsg.style.display = checks.length >= 2 ? 'block' : 'none';
-}
+            box.style.display = 'block';
+            lista.innerHTML = items.join('<br>');
+            totalEl.textContent = `$${total}`;
 
-document.querySelectorAll('input[type="checkbox"]').forEach(ch => {
-  ch.addEventListener('change', actualizarResumen);
-});
-function enviarWhatsApp() {
-  const texto = armarMensaje();
-  const numero = "5492657219227"; // EJEMPLO: Argentina +54 9 + número
-  const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
-  window.open(url, "_blank");
-}
+            // combo simple: 2 o más servicios
+            comboMsg.style.display = checks.length >= 2 ? 'inline-block' : 'none';
+        }
 
+        document.querySelectorAll('input[type="checkbox"]').forEach(ch => {
+            ch.addEventListener('change', actualizarResumen);
+        });
 
-  </script>
+        function enviarWhatsApp() {
+            const texto = armarMensaje();
+            const numero = "5492657219227"; // EJEMPLO: Argentina +54 9 + número
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+            window.open(url, "_blank");
+        }
+    </script>
 </body>
+
 </html>
