@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuidora Mayorista | DistriMax Pro</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+        :root {
+            --primary: #ff6b00;
+            /* Naranja industrial */
+            --primary-dark: #e65c00;
+            --dark: #121212;
+            --darker: #000000;
+            --gray-dark: #2a2a2a;
+            --gray-light: #f5f5f5;
+            --text: #e0e0e0;
+            --white: #ffffff;
+            --radius: 4px;
+            /* Bordes más rectos/industriales */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+        }
+
+        h1,
+        h2,
+        h3,
+        .condensed {
+            font-family: 'Roboto Condensed', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--primary);
+            color: var(--darker);
+            padding: 8px 0;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--darker);
+            border-bottom: 3px solid var(--primary);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-grid {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .search-area {
+            display: flex;
+        }
+
+        .search-area input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid var(--gray-dark);
+            background: var(--dark);
+            color: var(--white);
+            border-radius: var(--radius) 0 0 var(--radius);
+            outline: none;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .search-area button {
+            background: var(--primary);
+            color: var(--darker);
+            border: none;
+            padding: 0 25px;
+            font-weight: 700;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .action-item {
+            display: flex;
+            flex-direction: column;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .action-item strong {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8ed7c80a71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-dark);
+        }
+
+        .banner h1 {
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #ccc;
+        }
+
+        .btn-solid {
+            background: var(--primary);
+            color: var(--darker);
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: var(--radius);
+            text-transform: uppercase;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+
+        .btn-solid:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Catalog Section (List style, very common for B2B) */
+        .catalog {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+            padding: 60px 0;
+        }
+
+        /* Sidebar filters */
+        .sidebar {
+            background: var(--darker);
+            padding: 25px;
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-dark);
+            height: fit-content;
+        }
+
+        .sidebar h2 {
+            color: var(--white);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: #bbb;
+            font-size: 0.95rem;
+        }
+
+        .filter-group label:hover {
+            color: var(--primary);
+        }
+
+        /* Product List */
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--gray-dark);
+        }
+
+        .list-header h2 {
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--darker);
+            border: 1px solid var(--gray-dark);
+        }
+
+        .product-table th,
+        .product-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-dark);
+        }
+
+        .product-table th {
+            background: var(--gray-dark);
+            color: var(--text);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .td-img img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            background: var(--white);
+            padding: 2px;
+        }
+
+        .td-info strong {
+            display: block;
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .td-info span {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .td-price {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        /* Custom Quantity Input */
+        .qty-input {
+            display: flex;
+            border: 1px solid var(--gray-dark);
+            border-radius: var(--radius);
+            width: 100px;
+            overflow: hidden;
+        }
+
+        .qty-input button {
+            background: var(--gray-dark);
+            color: var(--white);
+            border: none;
+            width: 30px;
+            cursor: pointer;
+        }
+
+        .qty-input input {
+            width: 40px;
+            text-align: center;
+            background: var(--dark);
+            color: var(--white);
+            border: none;
+            border-left: 1px solid var(--gray-dark);
+            border-right: 1px solid var(--gray-dark);
+        }
+
+        .btn-add {
+            background: var(--gray-dark);
+            color: var(--white);
+            border: 1px solid var(--gray-dark);
+            padding: 8px 15px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .btn-add:hover {
+            background: var(--primary);
+            color: var(--darker);
+            border-color: var(--primary);
+        }
+
+        .product-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        footer {
+            background: var(--darker);
+            border-top: 5px solid var(--primary);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .header-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .catalog {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            /* En móvil normalmente se oculta bajo un botón */
+            .product-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        Venta exclusiva a comercios minoristas. Compra mínima: $150.000 ARS. Envíos a todo el país.
+    </div>
+
+    <header>
+        <div class="container header-grid">
+            <a href="#" class="logo">DISTRI<span>MAX</span> PRO</a>
+
+            <div class="search-area">
+                <input type="text" placeholder="Buscar por SKU, marca o tipo de producto...">
+                <button>Buscar</button>
+            </div>
+
+            <div class="header-actions">
+                <a href="#" class="action-item">
+                    <span>Atención a Clientes</span>
+                    <strong>0800-444-DIST</strong>
+                </a>
+                <a href="#" class="action-item" style="border-left: 1px solid var(--gray-dark); padding-left: 20px;">
+                    <span>Pedido Actual</span>
+                    <strong>$0.00 (0)</strong>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="banner">
+        <div class="container">
+            <h1>Líderes en Distribución Mayorista</h1>
+            <p>Abastecé tu negocio con las mejores marcas, stock permanente y logística propia garantizada en 48hs.</p>
+            <a href="#catalogo" class="btn-solid">Ver Listado de Precios</a>
+        </div>
+    </section>
+
+    <main class="container catalog" id="catalogo">
+        <aside class="sidebar">
+            <h2>Categorías</h2>
+            <div class="filter-group">
+                <label><input type="checkbox"> Almacén & Provisiones</label>
+                <label><input type="checkbox"> Bebidas & Licores</label>
+                <label><input type="checkbox"> Limpieza Institucional</label>
+                <label><input type="checkbox"> Higiene y Cuidado</label>
+                <label><input type="checkbox"> Bazar y Descartables</label>
+            </div>
+
+            <h2>Marcas Populares</h2>
+            <div class="filter-group">
+                <label><input type="checkbox"> Arcor</label>
+                <label><input type="checkbox"> Coca-Cola</label>
+                <label><input type="checkbox"> Unilever</label>
+                <label><input type="checkbox"> P&G</label>
+            </div>
+        </aside>
+
+        <section class="list-area">
+            <div class="list-header">
+                <h2>Catálogo de Productos - Almacén</h2>
+                <select style="background:var(--dark); color:white; border:1px solid var(--gray-dark); padding:8px;">
+                    <option>Ordenar por: A-Z</option>
+                    <option>Precio: Menor a Mayor</option>
+                    <option>Más vendidos</option>
+                </select>
+            </div>
+
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Producto / SKU</th>
+                        <th>Presentación</th>
+                        <th>Precio x Mayor</th>
+                        <th>Cantidad (Cajas)</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="td-img"><img
+                                src="https://images.unsplash.com/photo-1590779033100-9f60a05a013d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                                alt="Tomates perita"></td>
+                        <td class="td-info">
+                            <strong>Tomates Perita Enteros en Lata "La Huerta"</strong>
+                            <span>SKU: LHT-400-TP</span>
+                        </td>
+                        <td>Pack x 24 Unidades (400g)</td>
+                        <td class="td-price">$18.400</td>
+                        <td>
+                            <div class="qty-input">
+                                <button>-</button><input type="text" value="1"><button>+</button>
+                            </div>
+                        </td>
+                        <td><button class="btn-add">Agregar</button></td>
+                    </tr>
+
+                    <tr>
+                        <td class="td-img"><img
+                                src="https://images.unsplash.com/photo-1587311925979-425bceaf776a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                                alt="Aceite de oliva"></td>
+                        <td class="td-info">
+                            <strong>Aceite de Oliva Extra Virgen "San Pedro"</strong>
+                            <span>SKU: SPD-500-EV</span>
+                        </td>
+                        <td>Caja x 12 Botellas (500ml)</td>
+                        <td class="td-price">$45.600</td>
+                        <td>
+                            <div class="qty-input">
+                                <button>-</button><input type="text" value="1"><button>+</button>
+                            </div>
+                        </td>
+                        <td><button class="btn-add">Agregar</button></td>
+                    </tr>
+
+                    <tr>
+                        <td class="td-img"><img
+                                src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                                alt="Arroz">></td>
+                        <td class="td-info">
+                            <strong>Arroz Blanco Largo Fino "Granos del Sol"</strong>
+                            <span>SKU: GDS-1KG-LF</span>
+                        </td>
+                        <td>Fardo x 10 Paquetes (1kg)</td>
+                        <td class="td-price">$9.500</td>
+                        <td>
+                            <div class="qty-input">
+                                <button>-</button><input type="text" value="1"><button>+</button>
+                            </div>
+                        </td>
+                        <td><button class="btn-add">Agregar</button></td>
+                    </tr>
+
+                    <tr>
+                        <td class="td-img"><img
+                                src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                                alt="Café"></td>
+                        <td class="td-info">
+                            <strong>Café Molido Tostado Intenso "Cafetal"</strong>
+                            <span>SKU: CFT-500-INT</span>
+                        </td>
+                        <td>Caja x 12 Paquetes (500g)</td>
+                        <td class="td-price">$54.000</td>
+                        <td>
+                            <div class="qty-input">
+                                <button>-</button><input type="text" value="1"><button>+</button>
+                            </div>
+                        </td>
+                        <td><button class="btn-add">Agregar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>DistriMax Pro B2B Demo - Plataforma de pedidos mayoristas © 2026</p>
+    </footer>
+</body>
+
+</html>
