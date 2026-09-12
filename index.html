@@ -659,7 +659,40 @@
                         padding: 24px 20px;
                     }
                 }
-            </style>
+            
+/* ===== FT STORE V2 — INTERACTIVE / PREDICTIVE UX ===== */
+.v2-tools{position:sticky;top:104px;z-index:90;display:grid;grid-template-columns:1fr auto;gap:12px;margin:0 auto 26px;max-width:900px;padding:14px;border:1px solid var(--clr-border);border-radius:18px;background:rgba(9,9,11,.82);backdrop-filter:blur(18px)}
+.v2-search{display:flex;align-items:center;gap:10px;padding:0 14px;border:1px solid var(--clr-border);border-radius:12px;background:rgba(255,255,255,.04)}
+.v2-search input{width:100%;border:0;outline:0;background:transparent;color:#fff;font:inherit;padding:13px 0}
+.v2-cats{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.v2-cats button,.v2-filter{border:1px solid var(--clr-border);background:rgba(255,255,255,.04);color:#e2e8f0;padding:10px 12px;border-radius:999px;cursor:pointer;font-weight:700;white-space:nowrap}
+.v2-cats button.active,.v2-filter.active{background:var(--clr-primary);border-color:var(--clr-primary);color:#fff}
+.v2-welcome{margin:0 auto 28px;max-width:900px;padding:22px;border:1px solid rgba(59,130,246,.28);border-radius:20px;background:linear-gradient(135deg,rgba(59,130,246,.10),rgba(244,63,94,.08))}
+.v2-welcome h2{margin:0 0 8px;font-size:1.35rem}.v2-welcome p{margin:0 0 16px;color:#94a3b8}
+.v2-choices{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.v2-choice{border:1px solid var(--clr-border);border-radius:14px;padding:13px;background:rgba(255,255,255,.04);color:#fff;cursor:pointer;text-align:left}
+.v2-choice:hover{border-color:rgba(59,130,246,.6);transform:translateY(-1px)}
+.v2-choice b{display:block;margin-bottom:4px}.v2-choice small{color:#94a3b8}
+.v2-recommend{display:none;margin:0 auto 28px;max-width:900px;padding:20px;border:1px solid rgba(251,191,36,.35);border-radius:18px;background:rgba(251,191,36,.07)}
+.v2-recommend.show{display:block}.v2-recommend h3{margin:0 0 6px}.v2-recommend p{margin:0 0 14px;color:#cbd5e1}
+.v2-rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.v2-rec-card{padding:14px;border-radius:14px;background:rgba(0,0,0,.22);border:1px solid var(--clr-border)}
+.v2-rec-card button{margin-top:10px;width:100%;padding:9px;border:0;border-radius:10px;background:#fff;color:#09090b;font-weight:800;cursor:pointer}
+.v2-hidden{display:none!important}
+.card.v2-match{border-color:rgba(59,130,246,.6);box-shadow:0 0 0 1px rgba(59,130,246,.12)}
+.v2-badge{position:absolute;right:18px;top:-1px;font-size:.68rem;font-weight:800;padding:4px 8px;border-radius:0 0 8px 8px;background:#fbbf24;color:#09090b}
+.v2-badge.best{background:#3b82f6;color:#fff}.v2-badge.combo{background:#25D366;color:#07150c}
+.v2-cart{position:fixed;right:20px;bottom:92px;z-index:110;width:min(380px,calc(100vw - 40px));display:none;padding:18px;border-radius:20px;border:1px solid rgba(244,63,94,.35);background:rgba(15,15,18,.94);box-shadow:0 20px 60px rgba(0,0,0,.55);backdrop-filter:blur(18px)}
+.v2-cart.show{display:block}.v2-cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.v2-cart-list{max-height:190px;overflow:auto;border-bottom:1px dashed var(--clr-border-hover);padding-bottom:10px;margin-bottom:10px}
+.v2-cart-item{display:flex;justify-content:space-between;gap:10px;padding:6px 0;color:#cbd5e1;font-size:.9rem}.v2-cart-total{display:flex;justify-content:space-between;font-weight:800;font-size:1.15rem}.v2-cart-total span:last-child{color:var(--clr-primary)}
+.v2-cart-actions{display:flex;gap:8px;margin-top:12px}.v2-cart-actions button{flex:1;padding:11px;border:0;border-radius:12px;font-weight:800;cursor:pointer}.v2-clear{background:#27272a;color:#fff}.v2-go{background:#25D366;color:#07150c}
+.v2-toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:300;padding:11px 16px;border-radius:999px;background:#18181b;color:#fff;border:1px solid var(--clr-border);transition:.25s}.v2-toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:700px){
+ .v2-tools{top:86px;grid-template-columns:1fr;padding:10px}.v2-cats{overflow:auto;flex-wrap:nowrap;padding-bottom:2px}
+ .v2-choices{grid-template-columns:repeat(2,1fr)}.v2-rec-grid{grid-template-columns:1fr}
+ .v2-cart{right:12px;bottom:88px;width:calc(100vw - 24px)}
+}
+
+</style>
         </head>
 
         <body>
@@ -686,8 +719,37 @@
 
             <main>
 
+<div class="v2-tools">
+  <div class="v2-search">🔎 <input id="v2Search" type="search" placeholder="Buscar Netflix, TV, Canva, Spotify, juegos..." autocomplete="off"></div>
+  <div class="v2-cats">
+    <button class="active" data-cat="all">Todos</button>
+    <button data-cat="streaming">🎬 Streaming</button>
+    <button data-cat="digitales">🛠️ Digital</button>
+    <button data-cat="tvonline">📺 TV</button>
+    <button data-cat="Juegos">🎮 Juegos</button>
+  </div>
+</div>
+
+<div class="v2-welcome">
+  <h2>👋 Encontrá lo que necesitás en segundos</h2>
+  <p>Elegí una opción y te mostramos primero lo más conveniente para vos.</p>
+  <div class="v2-choices">
+    <button class="v2-choice" data-intent="economico"><b>💰 Quiero gastar poco</b><small>Opciones económicas</small></button>
+    <button class="v2-choice" data-intent="recomendado"><b>⭐ Quiero lo recomendado</b><small>Mejor equilibrio</small></button>
+    <button class="v2-choice" data-intent="completo"><b>👑 Quiero cuenta completa</b><small>Más libertad</small></button>
+    <button class="v2-choice" data-intent="combo"><b>🔥 Quiero un combo</b><small>Busco ahorrar</small></button>
+  </div>
+</div>
+
+<div id="v2Recommend" class="v2-recommend">
+  <h3 id="v2RecTitle">🎯 Recomendado para vos</h3>
+  <p id="v2RecText"></p>
+  <div id="v2RecGrid" class="v2-rec-grid"></div>
+</div>
+
+
                 <!-- Seguidores -->
-                <section id="seguidores">
+                <section id="seguidores" data-v2-category="seguidores">
                     <h2>👥 Venta de Seguidores</h2>
                     <p class="subtext">Consultanos para obtener seguidores reales y segmentados.</p>
                     <div class="card-list">
@@ -716,7 +778,7 @@
                 </section>
 
                 <!-- Streaming Premium -->
-                <section id="streaming">
+                <section id="streaming" data-v2-category="streaming">
                     
                     <h2>🎞️ Streaming Premium</h2>
                     <p style="color:#94a3b8; margin-bottom:15px;">
@@ -726,14 +788,20 @@
                     <div class="card-list">
                         <div class="card" style="border:2px solid #25D366;">
         <label>
-        <input type="checkbox" data-name="COMBO FULL Netflix + Disney + Max" data-price="12000" />
-        <span class="name">🔥 COMBO FULL (Netflix + Disney + Max)</span>
-        <span class="price">$12000</span>
+        <input type="checkbox" data-name="COMBO FULL 1 Netflix + Disney + Max" data-price="13000" /><span class="v2-badge combo">🔥 MÁS VENDIDO</span>
+        <span class="name">🔥 COMBO FULL 1 (Netflix + Disney + Max)</span>
+        <span class="price">$13000</span>
+        </label>
+        <label>
+        <input type="checkbox" data-name="COMBO FULL 2 Netflix + Disney + Max" data-price="13200" />
+        <span class="name">🔥 COMBO FULL 2 (Netflix + Disney + Prine)</span>
+        <span class="price">$132
+            00</span>
         </label>
         </div>
                         <div class="card"><label><input type="checkbox" data-name="Netflix 4K Perfil Premium (Estable + Garantía)."
-                                    data-price="6500" /><span class="name">🎬 Netflix 4K Perfil Premium (Estable + Garantía)</span><span
-                                    class="price">$6500</span></label></div>
+                                    data-price="6750" /><span class="v2-badge best">⭐ RECOMENDADO</span><span class="name">🎬 Netflix 4K Perfil Premium (Estable + Garantía)</span><span
+                                    class="price">$6750</span></label></div>
                         <div class="card"><label><input type="checkbox" data-name="Netflix Standard Cuenta completa"
                                     data-price="SIN STOCK" /><span class="name">🎬 Netflix Standard Cuenta completa</span><span
                                     class="price">SIN STOCK</span></label></div>
@@ -741,57 +809,57 @@
                                     data-price="21000" /><span class="name">🎬 Netflix Premium Cuenta completa</span><span
                                     class="price">$21000</span></label></div>
                         <div class="card"><label><input type="checkbox" data-name="Disney+ Premium 1 Disp. CON ESPN"
-                                    data-price="5200" /><span class="name">🏰 Disney+ Premium 1 Disp. CON ESPN</span><span
-                                    class="price">$5200</span></label></div>
+                                    data-price="5450" /><span class="v2-badge best">⭐ RECOMENDADO</span><span class="name">🏰 Disney+ Premium 1 Disp. CON ESPN</span><span
+                                    class="price">$5450</span></label></div>
                                      <div class="card"><label><input type="checkbox" data-name="Disney+ Premium 1 Disp. SIN ESPN"
-                                    data-price="4200" /><span class="name">🏰 Disney+ Premium 1 Disp. SIN ESPN</span><span
-                                    class="price">$4200</span></label></div>
+                                    data-price="4450" /><span class="name">🏰 Disney+ Premium 1 Disp. SIN ESPN</span><span
+                                    class="price">$4450</span></label></div>
                         <div class="card"><label><input type="checkbox" data-name="Disney+ Cuenta Completa"
-                                    data-price="12800" /><span class="name">🏰 Disney+ Cuenta Completa</span><span
-                                    class="price">$14800</span></label></div>   
+                                    data-price="15200" /><span class="name">🏰 Disney+ Cuenta Completa</span><span
+                                    class="price">$15200</span></label></div>   
                         <div class="card"><label><input type="checkbox" data-name="Amazon Prime Video 1 Disp."
-                                    data-price="2900" /><span class="name">📦 Amazon Prime Video 1 Disp.</span><span
-                                    class="price">$2900</span></label></div>
+                                    data-price="3050" /><span class="v2-badge ">💰 ECONÓMICO</span><span class="name">📦 Amazon Prime Video 1 Disp.</span><span
+                                    class="price">$3050</span></label></div>
                         <div class="card"><label><input type="checkbox" data-name="Amazon Prime Video Cuenta Completa"
-                                    data-price="5200" /><span class="name">📦 Amazon Prime Video Cuenta Completa</span><span
-                                    class="price">$5200</span></label></div>
-                        <div class="card"><label><input type="checkbox" data-name="Apple TV+ 1 Disp. CON MLS" data-price="4500" /><span
-                                    class="name">🌐 Apple TV+ 1 Disp. CON MLS</span><span class="price">$4500</span></label></div>
-                                    <div class="card"><label><input type="checkbox" data-name="Apple TV+ 1 Disp. SIN MLS" data-price="4000" /><span
-                                    class="name">🌐 Apple TV+ 1 Disp. SIN MLS</span><span class="price">$4000</span></label></div>
+                                    data-price="5500" /><span class="name">📦 Amazon Prime Video Cuenta Completa</span><span
+                                    class="price">$5500</span></label></div>
+                        <div class="card"><label><input type="checkbox" data-name="Apple TV+ 1 Disp. CON MLS" data-price="4750" /><span
+                                    class="name">🌐 Apple TV+ 1 Disp. CON MLS</span><span class="price">$4750</span></label></div>
+                                    <div class="card"><label><input type="checkbox" data-name="Apple TV+ 1 Disp. SIN MLS" data-price="4200" /><span
+                                    class="name">🌐 Apple TV+ 1 Disp. SIN MLS</span><span class="price">$4200</span></label></div>
                         <div class="card"><label><input type="checkbox" data-name="Apple TV+ Cuenta Completa"
                                     data-price="7500" /><span class="name">🌐 Apple TV+ Cuenta Completa</span><span
                                     class="price">$7500</span></label></div>
-                        <div class="card"><label><input type="checkbox" data-name="Max (HBO) 1 Disp" data-price="2900" /><span
-                                    class="name">🔮 Max (HBO) 1 Disp</span><span class="price">$2900</span></label></div>
+                        <div class="card"><label><input type="checkbox" data-name="Max (HBO) 1 Disp" data-price="3050" /><span class="v2-badge ">💰 ECONÓMICO</span><span
+                                    class="name">🔮 Max (HBO) 1 Disp</span><span class="price">$3050</span></label></div>
                         <div class="card"><label><input type="checkbox" data-name="Max (HBO) Cuenta Completa"
                                     data-price="4800" /><span class="name">🔮 Max (HBO) Cuenta Completa</span><span
                                     class="price">$4800</span></label></div>
-                        <div class="card"><label><input type="checkbox" data-name="Paramount+ 1 Disp" data-price="41000" /><span
-                                    class="name">🗻 Paramount+ 1 Disp</span><span class="price">$4100</span></label></div>
+                        <div class="card"><label><input type="checkbox" data-name="Paramount+ 1 Disp" data-price="4500" /><span
+                                    class="name">🗻 Paramount+ 1 Disp</span><span class="price">$4500</span></label></div>
                         <div class="card"><label><input type="checkbox" data-name="Paramount+ Cuenta Completa"
                                     data-price="SIN STOCK" /><span class="name">🗻 Paramount+ Cuenta Completa</span><span
                                     class="price">$SIN STOCK</span></label></div>
                         <div class="card"><label><input type="checkbox" data-name="Vix Premium 1 perfil"
-                                    data-price="1700" /><span class="name">🔥 Vix Premium 1 perfil</span><span
-                                    class="price">$1700</span></label></div>
+                                    data-price="2000" /><span class="name">🔥 Vix Premium 1 perfil</span><span
+                                    class="price">$2000</span></label></div>
                         <div class="card"><label><input type="checkbox" data-name="Vix Premium Cuenta Completa"
-                                    data-price="3200" /><span class="name">🔥 Vix Premium Cuenta Completa</span><span
-                                    class="price">$3200</span></label></div>
-                        <div class="card"><label><input type="checkbox" data-name="Crunchyroll" data-price="2100" /><span
-                                    class="name">🔥 Crunchyroll</span><span class="price">$2100</span></label></div>
+                                    data-price="3450" /><span class="name">🔥 Vix Premium Cuenta Completa</span><span
+                                    class="price">$3450</span></label></div>
+                        <div class="card"><label><input type="checkbox" data-name="Crunchyroll" data-price="2350" /><span
+                                    class="name">🔥 Crunchyroll</span><span class="price">$2350</span></label></div>
                         <div class="card"><label><input type="checkbox" data-name="Crunchyroll Completa"
                                     data-price="4500" /><span class="name">🔥 Crunchyroll Completa</span><span
-                                    class="price">$4500</span></label></div>
-                        <div class="card"><label><input type="checkbox" data-name="Mubi" data-price="1900" /><span
-                                    class="name">🔥 Mubi</span><span class="price">$1900</span></label></div>
-                        <div class="card"><label><input type="checkbox" data-name="Mubi Completa" data-price="3000" /><span
+                                    class="price">$5000</span></label></div>
+                        <div class="card"><label><input type="checkbox" data-name="Mubi" data-price="2300" /><span
+                                    class="name">🔥 Mubi</span><span class="price">$2300</span></label></div>
+                        <div class="card"><label><input type="checkbox" data-name="Mubi Completa" data-price="3800" /><span
                                     class="name">🔥 Mubi Completa</span><span class="price">$3000</span></label></div>
                     </div>
                 </section>
 
                 <!-- Servicios Digitales -->
-                <section id="digitales">
+                <section id="digitales" data-v2-category="digitales">
                     <h2>🛠️ Servicios Digitales y Suscripciones</h2>
                     <div class="card-list">
                         <div class="card">
@@ -814,8 +882,8 @@
                                     class="price">$20000</span></label>
                         </div>
 
-                        <div class="card"><label><input type="checkbox" data-name="ChatGPT" data-price="6000" /><span
-                                    class="name">🤖 ChatGPT</span><span class="price">$6000</span></label></div>
+                        <div class="card"><label><input type="checkbox" data-name="ChatGPT" data-price="CONSULTAR" /><span
+                                    class="name">🤖 ChatGPT</span><span class="price">"CONSULTAR"</span></label></div>
                         <div class="card"><label><input type="checkbox" data-name="Gemini" data-price="6000" /><span
                                     class="name">🧠 Gemini</span><span class="price">$6000</span></label></div>
                         <div class="card"><label><input type="checkbox" data-name="CapCut Pro" data-price="6000" /><span
@@ -864,7 +932,7 @@
                 </section>
 
                 <!-- TV Online -->
-                <section id="tvonline">
+                <section id="tvonline" data-v2-category="tvonline">
                     <h2>📡 Servicios de TV Online Android</h2>
                     <p class="subtext">Consultá disponibilidad y precios.</p>
                     <div class="card-list">
@@ -911,7 +979,7 @@
                         
                     </div>
                 </section>
-                <section id="Juegos">
+                <section id="Juegos" data-v2-category="Juegos">
                     <h2>🎮 Juegos y suscripciones</h2>
                     <div class="card-list">
                         <div class="card"><label><input type="checkbox" data-name="GAMEPASS XBOX ULTIMATE 1 Mes"
@@ -1052,121 +1120,152 @@
                 <button id="btnEnviar" aria-label="Enviar pedido por WhatsApp">✅ ACTIVAR AHORA POR WHATSAPP</button>
             </div>
 
-            <script>
-                // Helper: mostrar/ocultar grupos cuando el parent se activa
-                document.querySelectorAll('.parent-option').forEach(parentChk => {
-                    const parentName = parentChk.getAttribute('data-name');
-                    const group = document.querySelector(`.grouped-options[data-parent="${parentName}"]`);
-                    // si hay grupo, sincronizar visibilidad
-                    if (group) {
-                        const setVisibility = () => { group.style.display = parentChk.checked ? 'flex' : 'none'; };
-                        setVisibility();
-                        parentChk.addEventListener('change', setVisibility);
-                    }
-                });
+            
+        
+<div id="v2Cart" class="v2-cart" aria-live="polite">
+  <div class="v2-cart-head"><strong>🛒 Tu pedido</strong><span id="v2Count">0 servicios</span></div>
+  <div id="v2CartList" class="v2-cart-list"></div>
+  <div class="v2-cart-total"><span>Total estimado</span><span id="v2CartTotal">$0</span></div>
+  <div id="v2Savings" style="color:#fbbf24;font-size:.82rem;margin-top:6px"></div>
+  <div class="v2-cart-actions">
+    <button class="v2-clear" id="v2Clear">Vaciar</button>
+    <button class="v2-go" id="v2Go">WhatsApp →</button>
+  </div>
+</div>
+<div id="v2Toast" class="v2-toast"></div>
 
-                function armarMensaje() {
-                    const checks = document.querySelectorAll('input[type="checkbox"]:checked');
+<script>
+(() => {
+  const $ = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+  const checks = () => $$('input[type="checkbox"]');
 
-                    if (!checks.length) {
-                        return "Hola! Quiero info sobre tus servicios.";
-                    }
+  const products = () => checks().map(ch => {
+    const card = ch.closest('.card, .grouped-options label');
+    const section = ch.closest('section');
+    return {
+      ch, card, section,
+      name: ch.dataset.name || '',
+      price: parseInt(ch.dataset.price,10),
+      category: section?.dataset.v2Category || '',
+      text: (card?.innerText || ch.dataset.name || '').toLowerCase()
+    };
+  });
 
-                    let total = 0;
-                    let items = [];
+  function money(n){ return '$' + n.toLocaleString('es-AR'); }
 
-                    checks.forEach(ch => {
-                        const nombre = ch.getAttribute('data-name');
-                        const precio = parseInt(ch.getAttribute('data-price'));
+  function toast(t){
+    const el=$('#v2Toast'); el.textContent=t; el.classList.add('show');
+    clearTimeout(window.__v2toast); window.__v2toast=setTimeout(()=>el.classList.remove('show'),2200);
+  }
 
-                        if (!isNaN(precio)) {
-                            total += precio;
-                            items.push(`• ${nombre} – $${precio}`);
-                        } else {
-                            items.push(`• ${nombre} – Consultar`);
-                        }
-                    });
+  function updateCart(){
+    const selected=products().filter(p=>p.ch.checked);
+    const total=selected.reduce((a,p)=>a+(Number.isFinite(p.price)?p.price:0),0);
+    const cart=$('#v2Cart');
+    cart.classList.toggle('show', selected.length>0);
+    $('#v2Count').textContent = `${selected.length} ${selected.length===1?'servicio':'servicios'}`;
+    $('#v2CartTotal').textContent=money(total);
+    $('#v2CartList').innerHTML=selected.length
+      ? selected.map(p=>`<div class="v2-cart-item"><span>${p.name}</span><strong>${Number.isFinite(p.price)?money(p.price):'Consultar'}</strong></div>`).join('')
+      : '';
+    let saving='';
+    const names=selected.map(p=>p.name.toLowerCase());
+    if(names.some(n=>n.includes('netflix')) && names.some(n=>n.includes('disney')) && names.some(n=>n.includes('max')))
+      saving='🔥 Tenés una combinación ideal para consultar precio combo.';
+    else if(selected.length>=2) saving='🔥 Tenés varios servicios: consultá precio combo.';
+    $('#v2Savings').textContent=saving;
+  }
 
-                    let msg =
-                        `Hola! Quiero activar los siguientes servicios 👇
+  function filter(q='', cat='all'){
+    q=q.trim().toLowerCase();
+    $$('section[data-v2-category]').forEach(sec=>{
+      let visible=0;
+      $$('.card',sec).forEach(card=>{
+        const txt=card.innerText.toLowerCase();
+        const okQ=!q || txt.includes(q);
+        const okCat=cat==='all' || sec.dataset.v2Category===cat;
+        const show=okQ && okCat;
+        card.classList.toggle('v2-hidden',!show);
+        if(show) visible++;
+      });
+      sec.classList.toggle('v2-hidden',visible===0);
+    });
+  }
 
-        ${items.join('\n')}
+  function revealProducts(list, title, text){
+    const rec=$('#v2Recommend'), grid=$('#v2RecGrid');
+    $('#v2RecTitle').textContent=title; $('#v2RecText').textContent=text;
+    grid.innerHTML='';
+    list.slice(0,3).forEach(p=>{
+      const d=document.createElement('div'); d.className='v2-rec-card';
+      d.innerHTML=`<strong>${p.name}</strong><div style="margin-top:6px;color:#94a3b8">${Number.isFinite(p.price)?money(p.price):'Consultar'}</div><button type="button">Agregar al pedido</button>`;
+      d.querySelector('button').onclick=()=>{p.ch.checked=true;p.ch.dispatchEvent(new Event('change',{bubbles:true}));toast('Agregado al pedido ✓');};
+      grid.appendChild(d);
+    });
+    rec.classList.toggle('show',list.length>0);
+    rec.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
 
-        💰 Total estimado: $${total}
-        `;
+  function intent(type){
+    const ps=products().filter(p=>Number.isFinite(p.price));
+    let list=[], title='', text='';
+    if(type==='economico'){
+      list=ps.filter(p=>p.price<=5500).sort((a,b)=>a.price-b.price);
+      title='💰 Opciones económicas'; text='Te mostramos servicios de entrada para cuidar el presupuesto.';
+    } else if(type==='completo'){
+      list=ps.filter(p=>/completa|full/i.test(p.name)).sort((a,b)=>a.price-b.price);
+      title='👑 Cuentas completas'; text='Estas opciones priorizan una experiencia más completa.';
+    } else if(type==='combo'){
+      list=ps.filter(p=>/combo|full/i.test(p.name));
+      title='🔥 Combos y opciones para ahorrar'; text='Empezá por estas opciones y, si combinás servicios, consultamos precio especial.';
+    } else {
+      const preferred=['Netflix 4K Perfil Premium (Estable + Garantía).','Disney+ Premium 1 Disp. CON ESPN','Max (HBO) 1 Disp','Amazon Prime Video 1 Disp.'];
+      list=preferred.map(n=>ps.find(p=>p.name===n)).filter(Boolean);
+      title='⭐ Lo más recomendado'; text='Una selección rápida para que no tengas que recorrer todo el catálogo.';
+    }
+    revealProducts(list,title,text);
+  }
 
-                    if (checks.length >= 2) {
-                        msg += `\n🔥 Consulto precio combo por varios servicios\n`;
-                    }
+  $('#v2Search').addEventListener('input',e=>filter(e.target.value,$('.v2-cats button.active')?.dataset.cat||'all'));
+  $$('.v2-cats button').forEach(b=>b.onclick=()=>{
+    $$('.v2-cats button').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+    filter($('#v2Search').value,b.dataset.cat);
+  });
+  $$('.v2-choice').forEach(b=>b.onclick=()=>intent(b.dataset.intent));
 
-                    msg += `\nVengo desde tu página web. Quedo atento 👍`;
+  checks().forEach(ch=>ch.addEventListener('change',updateCart));
+  $('#v2Clear').onclick=()=>{checks().forEach(ch=>ch.checked=false);checks().forEach(ch=>ch.dispatchEvent(new Event('change')));toast('Pedido vaciado');};
 
-                    return msg;
-                }
+  $('#v2Go').onclick=()=>{
+    const selected=products().filter(p=>p.ch.checked);
+    if(!selected.length){toast('Elegí al menos un servicio');return;}
+    const total=selected.reduce((a,p)=>a+(Number.isFinite(p.price)?p.price:0),0);
+    const items=selected.map(p=>`• ${p.name} – ${Number.isFinite(p.price)?money(p.price):'Consultar'}`).join('\n');
+    let msg=`Hola! 👋 Quiero activar estos servicios:\n\n${items}\n\n💰 Total estimado: ${money(total)}`;
+    if(selected.length>=2) msg+='\n🔥 También quiero consultar precio combo.';
+    msg+='\n\nVengo desde la página de FT Store.';
+    window.open(`https://wa.me/5492657219227?text=${encodeURIComponent(msg)}`,'_blank');
+  };
 
-                document.getElementById('btnEnviar').addEventListener('click', enviarWhatsApp);
-                document.getElementById('linkWsFooter').addEventListener('click', function (e) { e.preventDefault(); enviarWhatsApp(); });
+  // Mejoras de consistencia del catálogo existente.
+  $$('.grouped-options input[type="checkbox"]').forEach(ch=>{
+    ch.addEventListener('change',()=>{
+      const parentName=ch.closest('.grouped-options')?.dataset.parent;
+      const parent=$(`.parent-option[data-name="${CSS.escape(parentName||'')}"]`);
+      if(parent){
+        parent.checked=$$(`.grouped-options[data-parent="${CSS.escape(parentName)}"] input[type="checkbox"]`).some(x=>x.checked);
+        parent.dispatchEvent(new Event('change'));
+      }
+    });
+  });
 
-                // UX: si chekeás sub-opciones, marcar también el parent
-                document.querySelectorAll('.grouped-options input[type="checkbox"]').forEach(subChk => {
-                    subChk.addEventListener('change', () => {
-                        const parentName = subChk.closest('.grouped-options')?.getAttribute('data-parent');
-                        if (!parentName) return;
-                        const parent = document.querySelector(`.parent-option[data-name="${parentName}"]`);
-                        if (!parent) return;
-                        // si alguna sub-opción está marcada, marcar el padre; si ninguna está marcada, desmarcar padre
-                        const anyChecked = Array.from(document.querySelectorAll(`.grouped-options[data-parent="${parentName}"] input[type=checkbox]`)).some(i => i.checked);
-                        parent.checked = anyChecked;
-                        // mantener visibilidad
-                        parent.dispatchEvent(new Event('change'));
-                    });
-                });
+  // Inicializar.
+  filter();
+  updateCart();
+})();
+</script>
 
-                function actualizarResumen() {
-                    const checks = document.querySelectorAll('input[type="checkbox"]:checked');
-                    const lista = document.getElementById('listaResumen');
-                    const totalEl = document.getElementById('totalPedido');
-                    const box = document.getElementById('resumenPedido');
-                    const comboMsg = document.getElementById('msgCombo');
-
-                    let total = 0;
-                    let items = [];
-
-                    checks.forEach(ch => {
-                        const nombre = ch.getAttribute('data-name');
-                        const precio = parseInt(ch.getAttribute('data-price'));
-                        if (!isNaN(precio)) {
-                            total += precio;
-                            items.push(`• ${nombre} – $${precio}`);
-                        } else {
-                            items.push(`• ${nombre} – Consultar`);
-                        }
-                    });
-
-                    if (items.length === 0) {
-                        box.style.display = 'none';
-                        return;
-                    }
-
-                    box.style.display = 'block';
-                    lista.innerHTML = items.join('<br>');
-                    totalEl.textContent = `$${total}`;
-
-                    // combo simple: 2 o más servicios
-                    comboMsg.style.display = checks.length >= 2 ? 'inline-block' : 'none';
-                }
-
-                document.querySelectorAll('input[type="checkbox"]').forEach(ch => {
-                    ch.addEventListener('change', actualizarResumen);
-                });
-
-                function enviarWhatsApp() {
-                    const texto = armarMensaje();
-                    const numero = "5492657219227"; // EJEMPLO: Argentina +54 9 + número
-                    const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
-                    window.open(url, "_blank");
-                }
-            </script>
-        </body>
+</body>
 
         </html>
